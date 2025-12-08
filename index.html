@@ -6,32 +6,31 @@
   <title>The Capstone Menu | Final Class Exercise</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --color-bg: #faf8f5;
-      --color-bg-warm: #f5f0e8;
-      --color-text: #2d3748;
-      --color-text-muted: #718096;
-      --color-primary: #1e3a5f;
-      --color-accent-orange: #e67e22;
-      --color-accent-green: #27ae60;
-      --color-accent-purple: #8e44ad;
-      --color-accent-red: #c0392b;
-      --color-accent-blue: #2980b9;
-      --color-accent-teal: #16a085;
-      --color-accent-pink: #d63384;
-      --color-accent-gold: #d4a03c;
-      --font-display: 'Fraunces', Georgia, serif;
-      --font-body: 'Inter', -apple-system, sans-serif;
-      --shadow-soft: 0 4px 20px rgba(0,0,0,0.06);
-      --shadow-medium: 0 8px 30px rgba(0,0,0,0.08);
-      --shadow-lift: 0 12px 40px rgba(0,0,0,0.12);
-      --radius-sm: 8px;
-      --radius-md: 12px;
-      --radius-lg: 20px;
-      --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-      --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      --color-bg: #fafafa;
+      --color-bg-subtle: #f5f5f7;
+      --color-bg-card: #ffffff;
+      --color-text: #1d1d1f;
+      --color-text-secondary: #6e6e73;
+      --color-text-tertiary: #86868b;
+      --color-primary: #0071e3;
+      --color-primary-dark: #0077ed;
+      --color-border: rgba(0,0,0,0.08);
+      --color-border-light: rgba(0,0,0,0.04);
+      --color-success: #34c759;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,0.08);
+      --shadow-xl: 0 16px 48px rgba(0,0,0,0.12);
+      --radius-sm: 12px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+      --transition: 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
     }
 
     * {
@@ -42,37 +41,23 @@
 
     html {
       scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     body {
       font-family: var(--font-body);
       background: var(--color-bg);
       color: var(--color-text);
-      line-height: 1.7;
-      font-size: 23px;
+      line-height: 1.6;
+      font-size: 17px;
       min-height: 100vh;
-      position: relative;
-      overflow-x: hidden;
-    }
-
-    /* Subtle grain texture overlay */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      opacity: 0.03;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-      z-index: 1000;
     }
 
     /* Hero Section */
     .hero {
-      background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 50%, #3182ce 100%);
-      padding: 80px 24px 100px;
+      background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      padding: 100px 24px 140px;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -85,70 +70,100 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
-                  radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 40%);
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(120, 119, 198, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(0, 113, 227, 0.1) 0%, transparent 40%);
       pointer-events: none;
     }
 
-    .hero-emojis {
-      font-size: 2.5rem;
-      letter-spacing: 0.5rem;
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 100px;
+      color: rgba(255,255,255,0.8);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
       margin-bottom: 32px;
-      animation: float 6s ease-in-out infinite;
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+      backdrop-filter: blur(8px);
+      animation: fadeIn 0.8s ease-out;
     }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--color-success);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.1); }
     }
 
     .hero-title {
       font-family: var(--font-display);
-      font-size: clamp(2.8rem, 8vw, 4.5rem);
+      font-size: clamp(48px, 8vw, 80px);
       font-weight: 600;
       color: white;
-      margin-bottom: 16px;
-      letter-spacing: -0.02em;
-      text-shadow: 0 4px 20px rgba(0,0,0,0.2);
-      animation: fadeInUp 0.8s ease-out;
-    }
-
-    .hero-subtitle {
-      font-family: var(--font-body);
-      font-size: 1.4rem;
-      color: rgba(255,255,255,0.85);
-      font-weight: 300;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
       animation: fadeInUp 0.8s ease-out 0.1s both;
     }
 
-    .hero-modules {
-      font-size: 1rem;
+    .hero-subtitle {
+      font-size: 20px;
       color: rgba(255,255,255,0.7);
-      font-style: italic;
-      line-height: 1.8;
+      font-weight: 400;
+      margin-bottom: 16px;
       animation: fadeInUp 0.8s ease-out 0.2s both;
     }
 
+    .hero-modules {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.8;
+      max-width: 480px;
+      margin: 0 auto 40px;
+      animation: fadeInUp 0.8s ease-out 0.3s both;
+    }
+
     .hero-date {
-      display: inline-block;
-      margin-top: 28px;
-      padding: 12px 28px;
-      background: rgba(255,255,255,0.15);
-      backdrop-filter: blur(10px);
-      border-radius: 50px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(20px);
+      border-radius: 100px;
       color: white;
       font-weight: 600;
-      font-size: 1.05rem;
-      border: 1px solid rgba(255,255,255,0.2);
-      animation: fadeInUp 0.8s ease-out 0.3s both;
+      font-size: 15px;
+      border: 1px solid rgba(255,255,255,0.15);
+      animation: fadeInUp 0.8s ease-out 0.4s both;
+    }
+
+    .hero-date svg {
+      width: 18px;
+      height: 18px;
+      opacity: 0.8;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     @keyframes fadeInUp {
       from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(24px);
       }
       to {
         opacity: 1;
@@ -156,178 +171,272 @@
       }
     }
 
-    /* Wave divider */
-    .wave-divider {
-      position: relative;
-      margin-top: -1px;
-      height: 80px;
-      overflow: hidden;
-    }
-
-    .wave-divider svg {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: 80px;
-    }
-
     /* Container */
     .container {
-      max-width: 900px;
+      max-width: 880px;
       margin: 0 auto;
       padding: 0 24px;
     }
 
-    /* Instructions Box */
-    .instructions-box {
-      background: white;
-      border-radius: var(--radius-lg);
-      padding: 40px 48px;
-      margin: -40px auto 60px;
-      max-width: 800px;
+    /* Instructions Card */
+    .instructions-card {
+      background: var(--color-bg-card);
+      border-radius: var(--radius-xl);
+      padding: 48px 56px;
+      margin: -80px auto 64px;
+      max-width: 760px;
       position: relative;
       z-index: 10;
-      box-shadow: var(--shadow-medium);
+      box-shadow: var(--shadow-xl);
+      border: 1px solid var(--color-border-light);
+      animation: fadeInUp 0.8s ease-out 0.5s both;
+    }
+
+    .instructions-header {
       text-align: center;
-      border: 1px solid rgba(0,0,0,0.04);
-      animation: fadeInUp 0.8s ease-out 0.4s both;
+      margin-bottom: 32px;
+    }
+
+    .instructions-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      box-shadow: 0 8px 24px rgba(102, 126, 234, 0.25);
+    }
+
+    .instructions-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: white;
     }
 
     .instructions-title {
       font-family: var(--font-display);
-      font-size: 1.6rem;
+      font-size: 28px;
       font-weight: 600;
-      color: var(--color-primary);
-      margin-bottom: 16px;
+      color: var(--color-text);
+      margin-bottom: 8px;
     }
 
     .instructions-text {
-      color: var(--color-text);
-      font-size: 1.1rem;
+      color: var(--color-text-secondary);
+      font-size: 17px;
+      line-height: 1.7;
       margin-bottom: 12px;
     }
 
-    .instructions-rule {
+    .instructions-text strong {
+      color: var(--color-text);
       font-weight: 600;
-      color: var(--color-primary);
-      font-size: 1.05rem;
-      padding: 16px 24px;
-      background: var(--color-bg-warm);
-      border-radius: var(--radius-sm);
-      margin-top: 20px;
-      display: inline-block;
     }
 
-    /* Exercise Cards */
+    .instructions-rule {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 24px;
+      background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+      border-radius: var(--radius-sm);
+      margin-top: 28px;
+      border: 1px solid rgba(102, 126, 234, 0.15);
+    }
+
+    .instructions-rule-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .instructions-rule-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: white;
+    }
+
+    .instructions-rule-text {
+      font-weight: 600;
+      color: var(--color-text);
+      font-size: 15px;
+    }
+
+    /* Exercises Section */
     .exercises-section {
-      padding: 40px 0 80px;
+      padding: 24px 0 80px;
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--color-text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 24px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--color-border);
     }
 
     .exercise-card {
-      background: white;
+      background: var(--color-bg-card);
       border-radius: var(--radius-lg);
-      margin-bottom: 20px;
-      box-shadow: var(--shadow-soft);
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-sm);
       overflow: hidden;
-      transition: all var(--transition-smooth);
-      border: 1px solid rgba(0,0,0,0.04);
-      animation: fadeInUp 0.6s ease-out both;
+      transition: all var(--transition);
+      border: 1px solid var(--color-border-light);
     }
 
     .exercise-card:hover {
-      box-shadow: var(--shadow-lift);
+      box-shadow: var(--shadow-lg);
       transform: translateY(-2px);
     }
-
-    .exercise-card[data-index="1"] { animation-delay: 0.1s; }
-    .exercise-card[data-index="2"] { animation-delay: 0.15s; }
-    .exercise-card[data-index="3"] { animation-delay: 0.2s; }
-    .exercise-card[data-index="4"] { animation-delay: 0.25s; }
-    .exercise-card[data-index="5"] { animation-delay: 0.3s; }
-    .exercise-card[data-index="6"] { animation-delay: 0.35s; }
-    .exercise-card[data-index="7"] { animation-delay: 0.4s; }
-    .exercise-card[data-index="8"] { animation-delay: 0.45s; }
 
     .exercise-header {
       padding: 24px 28px;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 16px;
-      transition: background var(--transition-fast);
+      gap: 20px;
+      transition: background var(--transition);
       position: relative;
     }
 
     .exercise-header:hover {
-      background: rgba(0,0,0,0.015);
+      background: var(--color-bg-subtle);
     }
 
     .exercise-number {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: var(--font-display);
       font-weight: 600;
-      font-size: 1.2rem;
+      font-size: 20px;
       color: white;
       flex-shrink: 0;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
     }
 
-    .exercise-card[data-color="orange"] .exercise-number { background: linear-gradient(135deg, #e67e22, #f39c12); }
-    .exercise-card[data-color="green"] .exercise-number { background: linear-gradient(135deg, #27ae60, #2ecc71); }
-    .exercise-card[data-color="purple"] .exercise-number { background: linear-gradient(135deg, #8e44ad, #9b59b6); }
-    .exercise-card[data-color="blue"] .exercise-number { background: linear-gradient(135deg, #2980b9, #3498db); }
-    .exercise-card[data-color="pink"] .exercise-number { background: linear-gradient(135deg, #d63384, #e056a4); }
-    .exercise-card[data-color="teal"] .exercise-number { background: linear-gradient(135deg, #16a085, #1abc9c); }
-    .exercise-card[data-color="gold"] .exercise-number { background: linear-gradient(135deg, #d4a03c, #f1c40f); }
-    .exercise-card[data-color="red"] .exercise-number { background: linear-gradient(135deg, #c0392b, #e74c3c); }
+    .exercise-card[data-color="orange"] .exercise-number { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+    .exercise-card[data-color="green"] .exercise-number { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+    .exercise-card[data-color="purple"] .exercise-number { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    .exercise-card[data-color="blue"] .exercise-number { background: linear-gradient(135deg, #0093E9 0%, #80D0C7 100%); }
+    .exercise-card[data-color="pink"] .exercise-number { background: linear-gradient(135deg, #FF6B6B 0%, #FFE66D 100%); }
+    .exercise-card[data-color="teal"] .exercise-number { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
+    .exercise-card[data-color="gold"] .exercise-number { background: linear-gradient(135deg, #F2994A 0%, #F2C94C 100%); }
+    .exercise-card[data-color="red"] .exercise-number { background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%); }
 
     .exercise-title-group {
       flex: 1;
+      min-width: 0;
     }
 
-    .exercise-emoji-title {
+    .exercise-name {
       font-family: var(--font-display);
-      font-size: 1.35rem;
+      font-size: 22px;
       font-weight: 600;
-      color: var(--color-primary);
+      color: var(--color-text);
+      margin-bottom: 4px;
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 4px;
+    }
+
+    .exercise-emoji {
+      font-size: 20px;
     }
 
     .exercise-tagline {
-      font-size: 1rem;
-      color: var(--color-text-muted);
+      font-size: 15px;
+      color: var(--color-text-secondary);
       font-style: italic;
     }
 
-    .exercise-toggle {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: var(--color-bg-warm);
+    .exercise-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .exercise-checkbox {
+      width: 28px;
+      height: 28px;
+      border: 2px solid var(--color-border);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all var(--transition);
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all var(--transition-fast);
+      background: white;
+      flex-shrink: 0;
+    }
+
+    .exercise-checkbox:hover {
+      border-color: var(--color-primary);
+    }
+
+    .exercise-checkbox.checked {
+      background: var(--color-success);
+      border-color: var(--color-success);
+    }
+
+    .exercise-checkbox svg {
+      width: 16px;
+      height: 16px;
+      stroke: white;
+      stroke-width: 3;
+      opacity: 0;
+      transform: scale(0.5);
+      transition: all var(--transition);
+    }
+
+    .exercise-checkbox.checked svg {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .exercise-toggle {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: var(--color-bg-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition);
       flex-shrink: 0;
     }
 
     .exercise-toggle svg {
       width: 20px;
       height: 20px;
-      stroke: var(--color-text-muted);
-      transition: transform var(--transition-smooth);
+      stroke: var(--color-text-tertiary);
+      transition: transform var(--transition);
     }
 
     .exercise-card.open .exercise-toggle {
-      background: var(--color-primary);
+      background: var(--color-text);
     }
 
     .exercise-card.open .exercise-toggle svg {
@@ -338,7 +447,7 @@
     .exercise-content {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: max-height 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
     }
 
     .exercise-card.open .exercise-content {
@@ -346,107 +455,156 @@
     }
 
     .exercise-body {
-      padding: 0 28px 28px;
-      border-top: 1px solid rgba(0,0,0,0.06);
+      padding: 0 28px 32px;
+      border-top: 1px solid var(--color-border-light);
     }
 
     .exercise-meta {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      padding: 20px 0;
-      border-bottom: 1px solid rgba(0,0,0,0.06);
+      gap: 10px;
+      padding: 24px 0;
     }
 
     .meta-tag {
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 0.85rem;
+      padding: 8px 16px;
+      border-radius: 100px;
+      font-size: 13px;
       font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .meta-vibe {
-      background: linear-gradient(135deg, #fef3e0, #fde8d0);
-      color: #92400e;
+      background: linear-gradient(135deg, #fef9e7 0%, #fdeaa8 100%);
+      color: #8a6d00;
+      border: 1px solid rgba(245, 198, 64, 0.3);
     }
 
     .meta-best-for {
-      background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+      background: linear-gradient(135deg, #e8f4fd 0%, #c4e1f6 100%);
       color: #0369a1;
+      border: 1px solid rgba(56, 189, 248, 0.3);
     }
 
     .exercise-description {
-      padding: 20px 0;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--color-border-light);
     }
 
     .description-label {
       font-weight: 600;
-      color: var(--color-primary);
-      font-size: 0.9rem;
+      color: var(--color-text);
+      font-size: 13px;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 8px;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
     }
 
     .description-text {
-      color: var(--color-text);
+      color: var(--color-text-secondary);
       line-height: 1.8;
+      font-size: 16px;
     }
 
     .deliverable-box {
-      background: linear-gradient(135deg, var(--color-bg-warm), #f0ebe3);
-      padding: 16px 20px;
+      background: linear-gradient(135deg, var(--color-bg-subtle) 0%, #f0f0f5 100%);
+      padding: 20px 24px;
       border-radius: var(--radius-sm);
-      margin: 16px 0;
-      border-left: 4px solid var(--color-primary);
+      margin: 24px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      border: 1px solid var(--color-border-light);
     }
 
-    .deliverable-box strong {
-      color: var(--color-primary);
+    .deliverable-icon {
+      width: 40px;
+      height: 40px;
+      background: white;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: var(--shadow-sm);
     }
 
-    /* Nested Toggle for Prompts */
+    .deliverable-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--color-primary);
+    }
+
+    .deliverable-content {
+      flex: 1;
+    }
+
+    .deliverable-label {
+      font-weight: 600;
+      color: var(--color-text);
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .deliverable-text {
+      color: var(--color-text-secondary);
+      font-size: 15px;
+    }
+
+    /* Prompts Section */
+    .prompts-section {
+      margin-top: 24px;
+    }
+
     .prompts-toggle {
       cursor: pointer;
-      padding: 16px 20px;
+      padding: 18px 24px;
       background: white;
-      border: 1px solid rgba(0,0,0,0.08);
+      border: 1px solid var(--color-border);
       border-radius: var(--radius-sm);
-      margin-top: 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      transition: all var(--transition-fast);
+      transition: all var(--transition);
     }
 
     .prompts-toggle:hover {
       border-color: var(--color-primary);
-      background: rgba(30, 58, 95, 0.02);
+      background: var(--color-bg-subtle);
     }
 
     .prompts-toggle-title {
       font-weight: 600;
-      color: var(--color-primary);
+      color: var(--color-text);
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
+      font-size: 15px;
     }
 
-    .prompts-toggle svg {
+    .prompts-toggle-title svg {
       width: 18px;
       height: 18px;
-      stroke: var(--color-text-muted);
-      transition: transform var(--transition-smooth);
+      stroke: var(--color-primary);
     }
 
-    .prompts-toggle.open svg {
+    .prompts-toggle .chevron {
+      width: 20px;
+      height: 20px;
+      stroke: var(--color-text-tertiary);
+      transition: transform var(--transition);
+    }
+
+    .prompts-toggle.open .chevron {
       transform: rotate(180deg);
     }
 
     .prompts-content {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: max-height 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
     }
 
     .prompts-toggle.open + .prompts-content {
@@ -454,41 +612,68 @@
     }
 
     .prompts-list {
-      padding: 20px;
-      background: #fafafa;
-      border: 1px solid rgba(0,0,0,0.06);
+      padding: 24px;
+      background: var(--color-bg-subtle);
+      border: 1px solid var(--color-border-light);
       border-top: none;
       border-radius: 0 0 var(--radius-sm) var(--radius-sm);
       list-style: none;
     }
 
     .prompts-list li {
-      padding: 10px 0 10px 28px;
+      padding: 12px 0 12px 32px;
       position: relative;
-      color: var(--color-text);
+      color: var(--color-text-secondary);
       line-height: 1.7;
+      font-size: 15px;
     }
 
     .prompts-list li::before {
-      content: '→';
+      content: '';
       position: absolute;
       left: 0;
-      color: var(--color-primary);
-      font-weight: 600;
+      top: 20px;
+      width: 20px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--color-primary) 0%, transparent 100%);
     }
 
     .live-moment {
-      margin-top: 20px;
-      padding: 16px 20px;
-      background: linear-gradient(135deg, #fdf4ff, #fae8ff);
+      margin-top: 24px;
+      padding: 20px 24px;
+      background: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 100%);
       border-radius: var(--radius-sm);
-      border-left: 4px solid var(--color-accent-purple);
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .live-moment-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .live-moment-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: white;
+    }
+
+    .live-moment-content {
+      flex: 1;
     }
 
     .live-moment-label {
       font-weight: 600;
-      color: var(--color-accent-purple);
-      font-size: 0.85rem;
+      color: #7c3aed;
+      font-size: 13px;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin-bottom: 6px;
@@ -496,53 +681,80 @@
 
     .live-moment-text {
       color: #581c87;
-      font-style: italic;
+      font-size: 15px;
+      line-height: 1.6;
     }
 
     /* Pairings Section */
     .pairings-section {
-      background: white;
-      border-radius: var(--radius-lg);
-      padding: 48px;
-      margin: 60px auto;
+      background: var(--color-bg-card);
+      border-radius: var(--radius-xl);
+      padding: 56px;
+      margin: 64px auto;
       max-width: 800px;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--color-border-light);
+    }
+
+    .pairings-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .pairings-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      box-shadow: 0 8px 24px rgba(17, 153, 142, 0.25);
+    }
+
+    .pairings-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: white;
     }
 
     .pairings-title {
       font-family: var(--font-display);
-      font-size: 1.8rem;
+      font-size: 28px;
       font-weight: 600;
-      color: var(--color-primary);
-      margin-bottom: 24px;
-      text-align: center;
+      color: var(--color-text);
+      margin-bottom: 8px;
     }
 
     .pairings-intro {
-      text-align: center;
-      color: var(--color-text-muted);
-      margin-bottom: 32px;
+      color: var(--color-text-secondary);
+      font-size: 16px;
     }
 
     .pairing-item {
       display: flex;
       align-items: center;
-      gap: 16px;
-      padding: 16px 20px;
-      background: var(--color-bg-warm);
-      border-radius: var(--radius-sm);
+      gap: 20px;
+      padding: 20px 24px;
+      background: var(--color-bg-subtle);
+      border-radius: var(--radius-md);
       margin-bottom: 12px;
-      transition: all var(--transition-fast);
+      transition: all var(--transition);
+      border: 1px solid transparent;
     }
 
     .pairing-item:hover {
-      background: #efe8db;
+      background: white;
+      border-color: var(--color-border);
+      box-shadow: var(--shadow-md);
       transform: translateX(4px);
     }
 
-    .pairing-icon {
-      font-size: 1.5rem;
+    .pairing-icons {
+      font-size: 24px;
+      display: flex;
+      gap: 4px;
     }
 
     .pairing-text {
@@ -551,56 +763,106 @@
 
     .pairing-label {
       font-weight: 600;
-      color: var(--color-primary);
-      margin-bottom: 2px;
+      color: var(--color-text);
+      margin-bottom: 4px;
+      font-size: 16px;
     }
 
     .pairing-exercises {
-      color: var(--color-text-muted);
-      font-size: 0.95rem;
+      color: var(--color-text-secondary);
+      font-size: 14px;
+    }
+
+    .pairing-arrow {
+      width: 24px;
+      height: 24px;
+      stroke: var(--color-text-tertiary);
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: all var(--transition);
+    }
+
+    .pairing-item:hover .pairing-arrow {
+      opacity: 1;
+      transform: translateX(0);
     }
 
     /* Submission Section */
     .submission-section {
       text-align: center;
-      padding: 60px 24px;
-      background: var(--color-bg-warm);
+      padding: 80px 24px;
+      background: var(--color-bg-subtle);
+      border-top: 1px solid var(--color-border-light);
+    }
+
+    .submission-icon {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      box-shadow: 0 8px 24px rgba(102, 126, 234, 0.25);
+    }
+
+    .submission-icon svg {
+      width: 32px;
+      height: 32px;
+      stroke: white;
     }
 
     .submission-title {
       font-family: var(--font-display);
-      font-size: 1.6rem;
+      font-size: 32px;
       font-weight: 600;
-      color: var(--color-primary);
+      color: var(--color-text);
       margin-bottom: 12px;
     }
 
     .submission-note {
       font-style: italic;
-      color: var(--color-text-muted);
+      color: var(--color-text-secondary);
       margin-bottom: 24px;
+      font-size: 17px;
     }
 
     .submission-text {
-      max-width: 600px;
-      margin: 0 auto 20px;
+      max-width: 560px;
+      margin: 0 auto 32px;
+      color: var(--color-text-secondary);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .submission-text strong {
       color: var(--color-text);
     }
 
     .time-estimate {
-      display: inline-block;
-      padding: 12px 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 32px;
       background: white;
-      border-radius: 50px;
+      border-radius: 100px;
       font-weight: 600;
-      color: var(--color-primary);
-      box-shadow: var(--shadow-soft);
+      color: var(--color-text);
+      box-shadow: var(--shadow-md);
+      font-size: 16px;
+    }
+
+    .time-estimate svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--color-primary);
     }
 
     /* Closing Section */
     .closing-section {
-      background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
-      padding: 80px 24px;
+      background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      padding: 100px 24px;
       text-align: center;
       color: white;
       position: relative;
@@ -614,72 +876,85 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: radial-gradient(circle at 30% 70%, rgba(255,255,255,0.08) 0%, transparent 50%);
+      background:
+        radial-gradient(ellipse 80% 50% at 20% 120%, rgba(120, 119, 198, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 20%, rgba(0, 113, 227, 0.08) 0%, transparent 40%);
       pointer-events: none;
     }
 
-    .closing-box {
-      max-width: 700px;
+    .closing-content {
+      max-width: 640px;
       margin: 0 auto;
       position: relative;
       z-index: 1;
     }
 
+    .closing-quote {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 32px;
+      opacity: 0.3;
+    }
+
     .closing-title {
       font-family: var(--font-display);
-      font-size: 1.6rem;
+      font-size: 24px;
       font-weight: 500;
-      margin-bottom: 24px;
-      color: rgba(255,255,255,0.9);
+      margin-bottom: 32px;
+      color: rgba(255,255,255,0.7);
+      font-style: italic;
     }
 
     .closing-text {
-      font-size: 1.15rem;
+      font-size: 18px;
       line-height: 1.9;
       color: rgba(255,255,255,0.85);
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
 
     .closing-excited {
       font-family: var(--font-display);
-      font-size: 1.3rem;
+      font-size: 24px;
       font-style: italic;
-      margin-top: 40px;
+      margin-top: 48px;
       color: white;
+      font-weight: 500;
     }
 
-    .closing-luck {
-      font-size: 2rem;
-      margin: 24px 0;
+    .closing-divider {
+      width: 48px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);
+      margin: 40px auto;
     }
 
     .closing-signature {
       font-family: var(--font-display);
-      font-size: 1.2rem;
+      font-size: 20px;
       font-style: italic;
-      color: rgba(255,255,255,0.7);
+      color: rgba(255,255,255,0.6);
     }
 
     /* Selection Counter */
     .selection-counter {
       position: fixed;
-      bottom: 24px;
-      right: 24px;
+      bottom: 32px;
+      right: 32px;
       background: white;
-      padding: 16px 24px;
-      border-radius: 50px;
-      box-shadow: var(--shadow-lift);
+      padding: 16px 28px;
+      border-radius: 100px;
+      box-shadow: var(--shadow-xl);
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
       z-index: 100;
-      border: 2px solid var(--color-primary);
-      transition: all var(--transition-fast);
+      border: 1px solid var(--color-border);
+      transition: all var(--transition);
     }
 
     .selection-counter.complete {
-      background: var(--color-primary);
-      border-color: var(--color-primary);
+      background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+      border-color: transparent;
     }
 
     .selection-counter.complete .counter-text {
@@ -688,7 +963,8 @@
 
     .counter-text {
       font-weight: 600;
-      color: var(--color-primary);
+      color: var(--color-text);
+      font-size: 15px;
     }
 
     .counter-dots {
@@ -700,95 +976,71 @@
       width: 12px;
       height: 12px;
       border-radius: 50%;
-      background: #e2e8f0;
-      transition: all var(--transition-fast);
+      background: var(--color-border);
+      transition: all var(--transition);
     }
 
     .counter-dot.filled {
-      background: var(--color-accent-green);
-      box-shadow: 0 0 8px rgba(39, 174, 96, 0.4);
+      background: var(--color-success);
+      box-shadow: 0 0 12px rgba(52, 199, 89, 0.5);
     }
 
-    /* Checkbox styling */
-    .exercise-checkbox {
-      position: absolute;
-      right: 80px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 28px;
-      height: 28px;
-      border: 2px solid #e2e8f0;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all var(--transition-fast);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .selection-counter.complete .counter-dot {
+      background: rgba(255,255,255,0.4);
+    }
+
+    .selection-counter.complete .counter-dot.filled {
       background: white;
-    }
-
-    .exercise-checkbox:hover {
-      border-color: var(--color-primary);
-    }
-
-    .exercise-checkbox.checked {
-      background: var(--color-accent-green);
-      border-color: var(--color-accent-green);
-    }
-
-    .exercise-checkbox svg {
-      width: 16px;
-      height: 16px;
-      stroke: white;
-      stroke-width: 3;
-      opacity: 0;
-      transition: opacity var(--transition-fast);
-    }
-
-    .exercise-checkbox.checked svg {
-      opacity: 1;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
     }
 
     /* Responsive */
     @media (max-width: 768px) {
       .hero {
-        padding: 60px 20px 80px;
+        padding: 80px 20px 120px;
       }
 
       .hero-title {
-        font-size: 2.4rem;
+        font-size: 40px;
       }
 
-      .instructions-box {
-        padding: 28px 24px;
-        margin: -30px 16px 40px;
+      .instructions-card {
+        padding: 32px 24px;
+        margin: -60px 16px 48px;
+        border-radius: var(--radius-lg);
       }
 
       .exercise-header {
         padding: 20px;
         flex-wrap: wrap;
+        gap: 16px;
       }
 
-      .exercise-checkbox {
-        position: static;
-        transform: none;
+      .exercise-actions {
         order: -1;
-        margin-right: auto;
+        width: 100%;
+        justify-content: flex-end;
       }
 
       .exercise-body {
-        padding: 0 20px 20px;
+        padding: 0 20px 24px;
       }
 
       .pairings-section {
-        padding: 32px 24px;
-        margin: 40px 16px;
+        padding: 40px 24px;
+        margin: 48px 16px;
+        border-radius: var(--radius-lg);
       }
 
       .selection-counter {
-        bottom: 16px;
-        right: 16px;
-        padding: 12px 18px;
+        bottom: 20px;
+        right: 20px;
+        left: 20px;
+        justify-content: center;
+      }
+
+      .closing-section {
+        padding: 80px 24px;
       }
     }
   </style>
@@ -796,104 +1048,172 @@
 <body>
   <!-- Hero Section -->
   <header class="hero">
-    <div class="hero-emojis">🧠 💡 🎯 ✨ 🚀 📊 🔮 ⚡</div>
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Final Session
+    </div>
     <h1 class="hero-title">The Capstone Menu</h1>
-    <p class="hero-subtitle">Final Class Exercise — Pick 2 from 8</p>
+    <p class="hero-subtitle">Choose 2 of 8 Exercises</p>
     <div class="hero-modules">
       Big Data and AI in Business: Strategy and Emerging Trends<br>
-      &amp; Business Intelligence
+      & Business Intelligence
     </div>
-    <div class="hero-date">Tuesday, 9 December 2025</div>
+    <div class="hero-date">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+        <line x1="16" y1="2" x2="16" y2="6"></line>
+        <line x1="8" y1="2" x2="8" y2="6"></line>
+        <line x1="3" y1="10" x2="21" y2="10"></line>
+      </svg>
+      Tuesday, 9 December 2025
+    </div>
   </header>
 
-  <!-- Wave Divider -->
-  <div class="wave-divider">
-    <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
-      <path fill="#faf8f5" d="M0,64L48,58.7C96,53,192,43,288,42.7C384,43,480,53,576,58.7C672,64,768,64,864,58.7C960,53,1056,43,1152,42.7C1248,43,1344,53,1392,58.7L1440,64L1440,80L1392,80C1344,80,1248,80,1152,80C1056,80,960,80,864,80C768,80,672,80,576,80C480,80,384,80,288,80C192,80,96,80,48,80L0,80Z"></path>
-    </svg>
-  </div>
-
-  <!-- Instructions Box -->
+  <!-- Instructions Card -->
   <div class="container">
-    <div class="instructions-box">
-      <h2 class="instructions-title">How it works</h2>
-      <p class="instructions-text">Choose <strong>TWO</strong> experiences from the menu below.</p>
-      <p class="instructions-text">Pick one that stretches your head, pick one that stretches your heart — or pick two that match the energy you want to leave with.</p>
-      <div class="instructions-rule">Rule: Your output must be something you can keep, reuse, or defend.</div>
+    <div class="instructions-card">
+      <div class="instructions-header">
+        <div class="instructions-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+          </svg>
+        </div>
+        <h2 class="instructions-title">How It Works</h2>
+      </div>
+      <p class="instructions-text">Select <strong>two</strong> experiences from the menu below.</p>
+      <p class="instructions-text">Choose one that challenges your intellect, one that resonates emotionally — or simply pick two that match the energy you want to carry forward.</p>
+      <div class="instructions-rule">
+        <div class="instructions-rule-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+        </div>
+        <span class="instructions-rule-text">Your output must be something you can keep, reuse, or defend.</span>
+      </div>
     </div>
   </div>
 
   <!-- Exercises Section -->
   <section class="exercises-section">
-    <div class="container" id="exercises-container">
-      <!-- Exercises will be injected by JS -->
+    <div class="container">
+      <div class="section-label">Available Exercises</div>
+      <div id="exercises-container"></div>
     </div>
   </section>
 
   <!-- Pairings Section -->
   <div class="container">
     <div class="pairings-section">
-      <h2 class="pairings-title">Choosing Your Two</h2>
-      <p class="pairings-intro">Pick two options that fit your energy today. Here are some pairings that work well:</p>
-      
+      <div class="pairings-header">
+        <div class="pairings-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+            <line x1="9" y1="9" x2="9.01" y2="9"></line>
+            <line x1="15" y1="9" x2="15.01" y2="9"></line>
+          </svg>
+        </div>
+        <h2 class="pairings-title">Suggested Pairings</h2>
+        <p class="pairings-intro">Consider these combinations that complement each other well</p>
+      </div>
+
       <div class="pairing-item">
-        <span class="pairing-icon">⏳🔮</span>
+        <span class="pairing-icons">⏳ 🔮</span>
         <div class="pairing-text">
           <div class="pairing-label">Present + Future Self</div>
           <div class="pairing-exercises">Time Capsule + Three Horizons</div>
         </div>
+        <svg class="pairing-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
       </div>
 
       <div class="pairing-item">
-        <span class="pairing-icon">⚓🌌</span>
+        <span class="pairing-icons">⚓ 🌌</span>
         <div class="pairing-text">
           <div class="pairing-label">Personal + Civilizational</div>
           <div class="pairing-exercises">The Human Anchor + The Civilization Question</div>
         </div>
+        <svg class="pairing-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
       </div>
 
       <div class="pairing-item">
-        <span class="pairing-icon">🔍🎤</span>
+        <span class="pairing-icons">🔍 🎤</span>
         <div class="pairing-text">
           <div class="pairing-label">Philosophical + Rhetorical</div>
           <div class="pairing-exercises">Phenomenology of Delegation + Oxford Closing Statement</div>
         </div>
+        <svg class="pairing-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
       </div>
 
       <div class="pairing-item">
-        <span class="pairing-icon">🔮⚔️</span>
+        <span class="pairing-icons">🔮 ⚔️</span>
         <div class="pairing-text">
           <div class="pairing-label">Identity + Intellectual Rigor</div>
           <div class="pairing-exercises">Three Horizons + Steelman & Synthesis</div>
         </div>
+        <svg class="pairing-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
       </div>
 
       <div class="pairing-item">
-        <span class="pairing-icon">🌌🎤</span>
+        <span class="pairing-icons">🌌 🎤</span>
         <div class="pairing-text">
           <div class="pairing-label">Full Capstone Energy</div>
           <div class="pairing-exercises">The Civilization Question + Oxford Closing Statement</div>
         </div>
+        <svg class="pairing-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
       </div>
     </div>
   </div>
 
   <!-- Submission Section -->
   <section class="submission-section">
+    <div class="submission-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+        <polyline points="17 8 12 3 7 8"></polyline>
+        <line x1="12" y1="3" x2="12" y2="15"></line>
+      </svg>
+    </div>
     <h2 class="submission-title">Submission</h2>
     <p class="submission-note">This is not graded. It is a closing ritual.</p>
-    <p class="submission-text">Save your two deliverables locally. If you want, email them to yourself with the subject line: <strong>'Capstone, Dec 2025'</strong> so future-you actually finds them.</p>
-    <div class="time-estimate">⏱️ Estimated time: 30-50 minutes</div>
+    <p class="submission-text">Save your two deliverables locally. Consider emailing them to yourself with the subject line <strong>"Capstone, Dec 2025"</strong> so your future self can find them.</p>
+    <div class="time-estimate">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <polyline points="12 6 12 12 16 14"></polyline>
+      </svg>
+      Estimated time: 30–50 minutes
+    </div>
   </section>
 
   <!-- Closing Section -->
   <section class="closing-section">
-    <div class="closing-box">
+    <div class="closing-content">
+      <svg class="closing-quote" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+      </svg>
       <h2 class="closing-title">A closing thought</h2>
-      <p class="closing-text">Today is not about proving you know things. It is about leaving with a clearer professional identity, a sharper way of thinking, and a couple of tools you will actually reuse.</p>
+      <p class="closing-text">Today is not about proving you know things. It is about leaving with a clearer professional identity, a sharper way of thinking, and tools you will actually reuse.</p>
       <p class="closing-text">You are walking out with choices, standards, and a working approach to data and AI that you can defend. Thank you for showing up, thinking hard, and building your own judgement.</p>
       <p class="closing-excited">I am genuinely excited to see what you build next.</p>
-      <div class="closing-luck">Good luck! 🍀</div>
+      <div class="closing-divider"></div>
       <div class="closing-signature">— Victor</div>
     </div>
   </section>
@@ -913,10 +1233,10 @@
         emoji: "⏳",
         name: "The Time Capsule",
         tagline: "Future Me, Don't Forget This",
-        vibe: "Reflective, intimate, identity-forward, surprisingly motivating.",
-        bestFor: "Students who want meaning, closure, and a clean personal narrative.",
+        vibe: "Reflective, intimate, identity-forward",
+        bestFor: "Students who want meaning and closure",
         whatYouDo: "You write a short message to your future self as a professional who uses AI and data well. You capture what you now believe, what you refuse to do, and what you will practise.",
-        deliverable: "A one-page Time Capsule Letter (PDF or Word).",
+        deliverable: "A one-page Time Capsule Letter (PDF or Word)",
         prompts: [
           "'In six months, I want you to remember...' — name your top 3 lessons.",
           "'The line I will not cross is...' — name 1 ethical boundary.",
@@ -931,10 +1251,10 @@
         emoji: "🧭",
         name: "The AI Operating Brief",
         tagline: "How I Use AI Like a Professional",
-        vibe: "Pragmatic, confident, systems-thinking, career-useful.",
-        bestFor: "Students who want a reusable framework and guardrails they can actually deploy.",
+        vibe: "Pragmatic, confident, systems-thinking",
+        bestFor: "Students who want a reusable framework",
         whatYouDo: "You create a one-page operating document that tells future-you how to use AI and data tools responsibly and effectively, across business contexts.",
-        deliverable: "A one-page AI Operating Brief (A4, maximum one page).",
+        deliverable: "A one-page AI Operating Brief (A4, maximum one page)",
         prompts: [
           "Purpose: What I use AI for in business, in one sentence.",
           "My Principles: 3 rules I will not break.",
@@ -950,10 +1270,10 @@
         emoji: "🌌",
         name: "The Civilization Question",
         tagline: "What Is Humanity Learning Right Now?",
-        vibe: "Philosophical, expansive, historically grounded, quietly profound.",
-        bestFor: "Students who want to zoom out and locate themselves in a larger human story.",
+        vibe: "Philosophical, expansive, profound",
+        bestFor: "Students who want to zoom out",
         whatYouDo: "Imagine explaining this moment in history to someone 100 years from now. What is humanity learning? What are we risking? What role do you want to play in this chapter? You write a short reflection that places your professional life inside a civilizational arc.",
-        deliverable: "A 250-300 word reflection titled 'Letter to the 22nd Century.'",
+        deliverable: "A 250-300 word reflection titled 'Letter to the 22nd Century'",
         prompts: [
           "'The question our generation is answering is...' — name the civilizational challenge.",
           "'What we are learning, often painfully, is...' — name 1 collective lesson.",
@@ -968,10 +1288,10 @@
         emoji: "⚓",
         name: "The Human Anchor",
         tagline: "What Will You Never Outsource?",
-        vibe: "Existential, protective, deeply personal, quietly defiant.",
-        bestFor: "Students who want to draw a line around what makes them irreducibly human.",
+        vibe: "Existential, protective, defiant",
+        bestFor: "Students who want to draw a line",
         whatYouDo: "You identify what you will never delegate to a machine — not because you can't, but because doing so would diminish something essential about who you are. You write a short manifesto about the parts of your mind, your relationships, and your work that you will protect.",
-        deliverable: "A one-page Human Anchor Manifesto, signed and dated.",
+        deliverable: "A one-page Human Anchor Manifesto, signed and dated",
         prompts: [
           "'The part of my thinking I will never outsource is...' — name 1 cognitive sacred ground.",
           "'The conversation I will always have in person is...' — name 1 relationship you protect.",
@@ -987,10 +1307,10 @@
         emoji: "🔮",
         name: "Three Horizons",
         tagline: "Letters to Your Future Selves",
-        vibe: "Temporal, identity-shaping, quietly urgent, surprisingly emotional.",
-        bestFor: "Students who want to think seriously about who they are becoming.",
+        vibe: "Temporal, identity-shaping, emotional",
+        bestFor: "Students who think seriously about becoming",
         whatYouDo: "You write three short letters — to yourself in 3 years, 5 years, and 10 years. Each letter answers: What do I hope you have learned? What do I hope you have built? What do I hope you have protected? You are not predicting — you are planting seeds.",
-        deliverable: "Three letters (100-150 words each), dated and sealed.",
+        deliverable: "Three letters (100-150 words each), dated and sealed",
         prompts: [
           "Letter 1 (3 years): 'By now, I hope you have stopped...' — name 1 habit to shed.",
           "Letter 1 (3 years): 'By now, I hope you have started...' — name 1 practice to begin.",
@@ -1004,12 +1324,12 @@
       },
       {
         emoji: "⚔️",
-        name: "Steelman and Synthesis",
+        name: "Steelman & Synthesis",
         tagline: "Argue Both Sides, Then Transcend Them",
-        vibe: "Intellectually rigorous, fair-minded, integrative.",
-        bestFor: "Students who want to practise intellectual virtue and nuanced thinking.",
+        vibe: "Rigorous, fair-minded, integrative",
+        bestFor: "Students who want intellectual virtue",
         whatYouDo: "You choose two opposed stances on AI (e.g., 'LLMs are mere stochastic parrots' vs 'LLMs exhibit emergent understanding'; or 'AI risk is overblown' vs 'AI risk is existential'). You write the strongest possible version of each, then propose a synthesis that keeps the best of both without contradiction.",
-        deliverable: "Two steelmans (120-150 words each) + one synthesis claim (80-100 words).",
+        deliverable: "Two steelmans (120-150 words each) + one synthesis claim (80-100 words)",
         prompts: [
           "Steelman A: What's the most charitable, rigorous version of this position?",
           "Steelman B: Same — make it as strong as possible, even if you disagree.",
@@ -1023,10 +1343,10 @@
         emoji: "🔍",
         name: "Phenomenology of Delegation",
         tagline: "What Happens When You Hand Over Thinking?",
-        vibe: "Introspective, ethical, philosophically grounded.",
-        bestFor: "Students who want to examine their own relationship with AI tools.",
+        vibe: "Introspective, ethical, philosophical",
+        bestFor: "Students examining their AI relationship",
         whatYouDo: "You write a brief 'field note' on a moment you delegated cognition to an AI tool (real or imagined). You examine what changed in your attention, responsibility, confidence, and self-trust. Then you state a principle for 'responsible delegation.'",
-        deliverable: "A 200-250 word field note + one principle formatted as a rule.",
+        deliverable: "A 200-250 word field note + one principle formatted as a rule",
         prompts: [
           "The moment: Describe a specific instance when you handed a cognitive task to AI.",
           "Attention: What did you stop paying attention to?",
@@ -1042,10 +1362,10 @@
         emoji: "🎤",
         name: "The Oxford Closing Statement",
         tagline: "Two Minutes to Say What Matters",
-        vibe: "Rhetorical, precise, memorable — your capstone moment.",
-        bestFor: "Students who want to practise distilling insight into eloquence.",
+        vibe: "Rhetorical, precise, memorable",
+        bestFor: "Students who want to practise eloquence",
         whatYouDo: "Imagine you are giving the final two minutes of a public Oxford lecture titled 'Business in the Age of AI.' You must deliver a closing statement with exactly: one thesis, one risk, one hope, one norm, and one question to leave hanging.",
-        deliverable: "A 180-220 word closing statement, structured with all five elements.",
+        deliverable: "A 180-220 word closing statement, structured with all five elements",
         prompts: [
           "Thesis: The single most important truth about AI in business.",
           "Risk: The danger we are most likely to underestimate.",
@@ -1071,50 +1391,83 @@
         <div class="exercise-header">
           <div class="exercise-number">${index + 1}</div>
           <div class="exercise-title-group">
-            <div class="exercise-emoji-title">
-              <span>${exercise.emoji}</span>
+            <div class="exercise-name">
+              <span class="exercise-emoji">${exercise.emoji}</span>
               <span>${exercise.name}</span>
             </div>
-            <div class="exercise-tagline">"${exercise.tagline}"</div>
+            <div class="exercise-tagline">${exercise.tagline}</div>
           </div>
-          <div class="exercise-checkbox" onclick="event.stopPropagation(); toggleSelection(this)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="20 6 9 17 4 12"></polyline>
-            </svg>
-          </div>
-          <div class="exercise-toggle">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
+          <div class="exercise-actions">
+            <div class="exercise-checkbox" onclick="event.stopPropagation(); toggleSelection(this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <div class="exercise-toggle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
           </div>
         </div>
         <div class="exercise-content">
           <div class="exercise-body">
             <div class="exercise-meta">
-              <span class="meta-tag meta-vibe">✨ ${exercise.vibe}</span>
-              <span class="meta-tag meta-best-for">🎯 ${exercise.bestFor}</span>
+              <span class="meta-tag meta-vibe">${exercise.vibe}</span>
+              <span class="meta-tag meta-best-for">${exercise.bestFor}</span>
             </div>
             <div class="exercise-description">
-              <div class="description-label">What you do</div>
+              <div class="description-label">What You Do</div>
               <p class="description-text">${exercise.whatYouDo}</p>
             </div>
             <div class="deliverable-box">
-              <strong>Deliverable:</strong> ${exercise.deliverable}
+              <div class="deliverable-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+              </div>
+              <div class="deliverable-content">
+                <div class="deliverable-label">Deliverable</div>
+                <div class="deliverable-text">${exercise.deliverable}</div>
+              </div>
             </div>
-            <div class="prompts-toggle" onclick="togglePrompts(this)">
-              <span class="prompts-toggle-title">📝 Template prompts</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9"></polyline>
-              </svg>
-            </div>
-            <div class="prompts-content">
-              <ul class="prompts-list">
-                ${exercise.prompts.map(p => `<li>${p}</li>`).join('')}
-              </ul>
+            <div class="prompts-section">
+              <div class="prompts-toggle" onclick="togglePrompts(this)">
+                <span class="prompts-toggle-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="8" y1="6" x2="21" y2="6"></line>
+                    <line x1="8" y1="12" x2="21" y2="12"></line>
+                    <line x1="8" y1="18" x2="21" y2="18"></line>
+                    <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                    <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                    <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                  </svg>
+                  Template Prompts
+                </span>
+                <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </div>
+              <div class="prompts-content">
+                <ul class="prompts-list">
+                  ${exercise.prompts.map(p => `<li>${p}</li>`).join('')}
+                </ul>
+              </div>
             </div>
             <div class="live-moment">
-              <div class="live-moment-label">✨ Optional live moment</div>
-              <p class="live-moment-text">${exercise.liveOption}</p>
+              <div class="live-moment-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+              </div>
+              <div class="live-moment-content">
+                <div class="live-moment-label">Optional Live Moment</div>
+                <p class="live-moment-text">${exercise.liveOption}</p>
+              </div>
             </div>
           </div>
         </div>
