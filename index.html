@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Capstone Menu | Final Class Exercise</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg: #faf8f5;
+      --color-bg-warm: #f5f0e8;
+      --color-text: #2d3748;
+      --color-text-muted: #718096;
+      --color-primary: #1e3a5f;
+      --color-accent-orange: #e67e22;
+      --color-accent-green: #27ae60;
+      --color-accent-purple: #8e44ad;
+      --color-accent-red: #c0392b;
+      --color-accent-blue: #2980b9;
+      --color-accent-teal: #16a085;
+      --color-accent-pink: #d63384;
+      --color-accent-gold: #d4a03c;
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-body: 'Source Sans 3', -apple-system, sans-serif;
+      --shadow-soft: 0 4px 20px rgba(0,0,0,0.06);
+      --shadow-medium: 0 8px 30px rgba(0,0,0,0.08);
+      --shadow-lift: 0 12px 40px rgba(0,0,0,0.12);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.7;
+      font-size: 17px;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Subtle grain texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      z-index: 1000;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 50%, #3182ce 100%);
+      padding: 80px 24px 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    .hero-emojis {
+      font-size: 2.5rem;
+      letter-spacing: 0.5rem;
+      margin-bottom: 32px;
+      animation: float 6s ease-in-out infinite;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 8vw, 4.5rem);
+      font-weight: 600;
+      color: white;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-body);
+      font-size: 1.4rem;
+      color: rgba(255,255,255,0.85);
+      font-weight: 300;
+      margin-bottom: 24px;
+      animation: fadeInUp 0.8s ease-out 0.1s both;
+    }
+
+    .hero-modules {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.7);
+      font-style: italic;
+      line-height: 1.8;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+
+    .hero-date {
+      display: inline-block;
+      margin-top: 28px;
+      padding: 12px 28px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 50px;
+      color: white;
+      font-weight: 600;
+      font-size: 1.05rem;
+      border: 1px solid rgba(255,255,255,0.2);
+      animation: fadeInUp 0.8s ease-out 0.3s both;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Wave divider */
+    .wave-divider {
+      position: relative;
+      margin-top: -1px;
+      height: 80px;
+      overflow: hidden;
+    }
+
+    .wave-divider svg {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 80px;
+    }
+
+    /* Container */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Instructions Box */
+    .instructions-box {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 40px 48px;
+      margin: -40px auto 60px;
+      max-width: 800px;
+      position: relative;
+      z-index: 10;
+      box-shadow: var(--shadow-medium);
+      text-align: center;
+      border: 1px solid rgba(0,0,0,0.04);
+      animation: fadeInUp 0.8s ease-out 0.4s both;
+    }
+
+    .instructions-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: 16px;
+    }
+
+    .instructions-text {
+      color: var(--color-text);
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+    }
+
+    .instructions-rule {
+      font-weight: 600;
+      color: var(--color-primary);
+      font-size: 1.05rem;
+      padding: 16px 24px;
+      background: var(--color-bg-warm);
+      border-radius: var(--radius-sm);
+      margin-top: 20px;
+      display: inline-block;
+    }
+
+    /* Exercise Cards */
+    .exercises-section {
+      padding: 40px 0 80px;
+    }
+
+    .exercise-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      transition: all var(--transition-smooth);
+      border: 1px solid rgba(0,0,0,0.04);
+      animation: fadeInUp 0.6s ease-out both;
+    }
+
+    .exercise-card:hover {
+      box-shadow: var(--shadow-lift);
+      transform: translateY(-2px);
+    }
+
+    .exercise-card[data-index="1"] { animation-delay: 0.1s; }
+    .exercise-card[data-index="2"] { animation-delay: 0.15s; }
+    .exercise-card[data-index="3"] { animation-delay: 0.2s; }
+    .exercise-card[data-index="4"] { animation-delay: 0.25s; }
+    .exercise-card[data-index="5"] { animation-delay: 0.3s; }
+    .exercise-card[data-index="6"] { animation-delay: 0.35s; }
+    .exercise-card[data-index="7"] { animation-delay: 0.4s; }
+    .exercise-card[data-index="8"] { animation-delay: 0.45s; }
+
+    .exercise-header {
+      padding: 24px 28px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: background var(--transition-fast);
+      position: relative;
+    }
+
+    .exercise-header:hover {
+      background: rgba(0,0,0,0.015);
+    }
+
+    .exercise-number {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: white;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .exercise-card[data-color="orange"] .exercise-number { background: linear-gradient(135deg, #e67e22, #f39c12); }
+    .exercise-card[data-color="green"] .exercise-number { background: linear-gradient(135deg, #27ae60, #2ecc71); }
+    .exercise-card[data-color="purple"] .exercise-number { background: linear-gradient(135deg, #8e44ad, #9b59b6); }
+    .exercise-card[data-color="blue"] .exercise-number { background: linear-gradient(135deg, #2980b9, #3498db); }
+    .exercise-card[data-color="pink"] .exercise-number { background: linear-gradient(135deg, #d63384, #e056a4); }
+    .exercise-card[data-color="teal"] .exercise-number { background: linear-gradient(135deg, #16a085, #1abc9c); }
+    .exercise-card[data-color="gold"] .exercise-number { background: linear-gradient(135deg, #d4a03c, #f1c40f); }
+    .exercise-card[data-color="red"] .exercise-number { background: linear-gradient(135deg, #c0392b, #e74c3c); }
+
+    .exercise-title-group {
+      flex: 1;
+    }
+
+    .exercise-emoji-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+
+    .exercise-tagline {
+      font-size: 1rem;
+      color: var(--color-text-muted);
+      font-style: italic;
+    }
+
+    .exercise-toggle {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--color-bg-warm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition-fast);
+      flex-shrink: 0;
+    }
+
+    .exercise-toggle svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--color-text-muted);
+      transition: transform var(--transition-smooth);
+    }
+
+    .exercise-card.open .exercise-toggle {
+      background: var(--color-primary);
+    }
+
+    .exercise-card.open .exercise-toggle svg {
+      stroke: white;
+      transform: rotate(180deg);
+    }
+
+    .exercise-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .exercise-card.open .exercise-content {
+      max-height: 2000px;
+    }
+
+    .exercise-body {
+      padding: 0 28px 28px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .exercise-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .meta-tag {
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .meta-vibe {
+      background: linear-gradient(135deg, #fef3e0, #fde8d0);
+      color: #92400e;
+    }
+
+    .meta-best-for {
+      background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+      color: #0369a1;
+    }
+
+    .exercise-description {
+      padding: 20px 0;
+    }
+
+    .description-label {
+      font-weight: 600;
+      color: var(--color-primary);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .description-text {
+      color: var(--color-text);
+      line-height: 1.8;
+    }
+
+    .deliverable-box {
+      background: linear-gradient(135deg, var(--color-bg-warm), #f0ebe3);
+      padding: 16px 20px;
+      border-radius: var(--radius-sm);
+      margin: 16px 0;
+      border-left: 4px solid var(--color-primary);
+    }
+
+    .deliverable-box strong {
+      color: var(--color-primary);
+    }
+
+    /* Nested Toggle for Prompts */
+    .prompts-toggle {
+      cursor: pointer;
+      padding: 16px 20px;
+      background: white;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: var(--radius-sm);
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all var(--transition-fast);
+    }
+
+    .prompts-toggle:hover {
+      border-color: var(--color-primary);
+      background: rgba(30, 58, 95, 0.02);
+    }
+
+    .prompts-toggle-title {
+      font-weight: 600;
+      color: var(--color-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .prompts-toggle svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--color-text-muted);
+      transition: transform var(--transition-smooth);
+    }
+
+    .prompts-toggle.open svg {
+      transform: rotate(180deg);
+    }
+
+    .prompts-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .prompts-toggle.open + .prompts-content {
+      max-height: 800px;
+    }
+
+    .prompts-list {
+      padding: 20px;
+      background: #fafafa;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-top: none;
+      border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+      list-style: none;
+    }
+
+    .prompts-list li {
+      padding: 10px 0 10px 28px;
+      position: relative;
+      color: var(--color-text);
+      line-height: 1.7;
+    }
+
+    .prompts-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--color-primary);
+      font-weight: 600;
+    }
+
+    .live-moment {
+      margin-top: 20px;
+      padding: 16px 20px;
+      background: linear-gradient(135deg, #fdf4ff, #fae8ff);
+      border-radius: var(--radius-sm);
+      border-left: 4px solid var(--color-accent-purple);
+    }
+
+    .live-moment-label {
+      font-weight: 600;
+      color: var(--color-accent-purple);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+
+    .live-moment-text {
+      color: #581c87;
+      font-style: italic;
+    }
+
+    /* Pairings Section */
+    .pairings-section {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 48px;
+      margin: 60px auto;
+      max-width: 800px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .pairings-title {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .pairings-intro {
+      text-align: center;
+      color: var(--color-text-muted);
+      margin-bottom: 32px;
+    }
+
+    .pairing-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      background: var(--color-bg-warm);
+      border-radius: var(--radius-sm);
+      margin-bottom: 12px;
+      transition: all var(--transition-fast);
+    }
+
+    .pairing-item:hover {
+      background: #efe8db;
+      transform: translateX(4px);
+    }
+
+    .pairing-icon {
+      font-size: 1.5rem;
+    }
+
+    .pairing-text {
+      flex: 1;
+    }
+
+    .pairing-label {
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: 2px;
+    }
+
+    .pairing-exercises {
+      color: var(--color-text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Submission Section */
+    .submission-section {
+      text-align: center;
+      padding: 60px 24px;
+      background: var(--color-bg-warm);
+    }
+
+    .submission-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: 12px;
+    }
+
+    .submission-note {
+      font-style: italic;
+      color: var(--color-text-muted);
+      margin-bottom: 24px;
+    }
+
+    .submission-text {
+      max-width: 600px;
+      margin: 0 auto 20px;
+      color: var(--color-text);
+    }
+
+    .time-estimate {
+      display: inline-block;
+      padding: 12px 24px;
+      background: white;
+      border-radius: 50px;
+      font-weight: 600;
+      color: var(--color-primary);
+      box-shadow: var(--shadow-soft);
+    }
+
+    /* Closing Section */
+    .closing-section {
+      background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+      padding: 80px 24px;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .closing-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 30% 70%, rgba(255,255,255,0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .closing-box {
+      max-width: 700px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .closing-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 500;
+      margin-bottom: 24px;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .closing-text {
+      font-size: 1.15rem;
+      line-height: 1.9;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 16px;
+    }
+
+    .closing-excited {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-style: italic;
+      margin-top: 40px;
+      color: white;
+    }
+
+    .closing-luck {
+      font-size: 2rem;
+      margin: 24px 0;
+    }
+
+    .closing-signature {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* Selection Counter */
+    .selection-counter {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: white;
+      padding: 16px 24px;
+      border-radius: 50px;
+      box-shadow: var(--shadow-lift);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 100;
+      border: 2px solid var(--color-primary);
+      transition: all var(--transition-fast);
+    }
+
+    .selection-counter.complete {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+    }
+
+    .selection-counter.complete .counter-text {
+      color: white;
+    }
+
+    .counter-text {
+      font-weight: 600;
+      color: var(--color-primary);
+    }
+
+    .counter-dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .counter-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #e2e8f0;
+      transition: all var(--transition-fast);
+    }
+
+    .counter-dot.filled {
+      background: var(--color-accent-green);
+      box-shadow: 0 0 8px rgba(39, 174, 96, 0.4);
+    }
+
+    /* Checkbox styling */
+    .exercise-checkbox {
+      position: absolute;
+      right: 80px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 28px;
+      height: 28px;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+    }
+
+    .exercise-checkbox:hover {
+      border-color: var(--color-primary);
+    }
+
+    .exercise-checkbox.checked {
+      background: var(--color-accent-green);
+      border-color: var(--color-accent-green);
+    }
+
+    .exercise-checkbox svg {
+      width: 16px;
+      height: 16px;
+      stroke: white;
+      stroke-width: 3;
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+    }
+
+    .exercise-checkbox.checked svg {
+      opacity: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        padding: 60px 20px 80px;
+      }
+
+      .hero-title {
+        font-size: 2.4rem;
+      }
+
+      .instructions-box {
+        padding: 28px 24px;
+        margin: -30px 16px 40px;
+      }
+
+      .exercise-header {
+        padding: 20px;
+        flex-wrap: wrap;
+      }
+
+      .exercise-checkbox {
+        position: static;
+        transform: none;
+        order: -1;
+        margin-right: auto;
+      }
+
+      .exercise-body {
+        padding: 0 20px 20px;
+      }
+
+      .pairings-section {
+        padding: 32px 24px;
+        margin: 40px 16px;
+      }
+
+      .selection-counter {
+        bottom: 16px;
+        right: 16px;
+        padding: 12px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-emojis">🧠 💡 🎯 ✨ 🚀 📊 🔮 ⚡</div>
+    <h1 class="hero-title">The Capstone Menu</h1>
+    <p class="hero-subtitle">Final Class Exercise — Pick 2 from 8</p>
+    <div class="hero-modules">
+      Big Data and AI in Business: Strategy and Emerging Trends<br>
+      &amp; Business Intelligence
+    </div>
+    <div class="hero-date">Tuesday, 9 December 2025</div>
+  </header>
+
+  <!-- Wave Divider -->
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+      <path fill="#faf8f5" d="M0,64L48,58.7C96,53,192,43,288,42.7C384,43,480,53,576,58.7C672,64,768,64,864,58.7C960,53,1056,43,1152,42.7C1248,43,1344,53,1392,58.7L1440,64L1440,80L1392,80C1344,80,1248,80,1152,80C1056,80,960,80,864,80C768,80,672,80,576,80C480,80,384,80,288,80C192,80,96,80,48,80L0,80Z"></path>
+    </svg>
+  </div>
+
+  <!-- Instructions Box -->
+  <div class="container">
+    <div class="instructions-box">
+      <h2 class="instructions-title">How it works</h2>
+      <p class="instructions-text">Choose <strong>TWO</strong> experiences from the menu below.</p>
+      <p class="instructions-text">Pick one that stretches your head, pick one that stretches your heart — or pick two that match the energy you want to leave with.</p>
+      <div class="instructions-rule">Rule: Your output must be something you can keep, reuse, or defend.</div>
+    </div>
+  </div>
+
+  <!-- Exercises Section -->
+  <section class="exercises-section">
+    <div class="container" id="exercises-container">
+      <!-- Exercises will be injected by JS -->
+    </div>
+  </section>
+
+  <!-- Pairings Section -->
+  <div class="container">
+    <div class="pairings-section">
+      <h2 class="pairings-title">Choosing Your Two</h2>
+      <p class="pairings-intro">Pick two options that fit your energy today. Here are some pairings that work well:</p>
+      
+      <div class="pairing-item">
+        <span class="pairing-icon">🧭⏳</span>
+        <div class="pairing-text">
+          <div class="pairing-label">Practical + Reflective</div>
+          <div class="pairing-exercises">AI Operating Brief + Time Capsule</div>
+        </div>
+      </div>
+      
+      <div class="pairing-item">
+        <span class="pairing-icon">⚔️🤝</span>
+        <div class="pairing-text">
+          <div class="pairing-label">Rigorous + Identity</div>
+          <div class="pairing-exercises">Steelman & Synthesis + Human Skills Commitment</div>
+        </div>
+      </div>
+      
+      <div class="pairing-item">
+        <span class="pairing-icon">🔍🎤</span>
+        <div class="pairing-text">
+          <div class="pairing-label">Philosophical + Rhetorical</div>
+          <div class="pairing-exercises">Phenomenology of Delegation + Oxford Closing Statement</div>
+        </div>
+      </div>
+      
+      <div class="pairing-item">
+        <span class="pairing-icon">🌍🎬</span>
+        <div class="pairing-text">
+          <div class="pairing-label">Communicative + Performative</div>
+          <div class="pairing-exercises">One Claim, Three Worlds + Micro-Demo</div>
+        </div>
+      </div>
+      
+      <div class="pairing-item">
+        <span class="pairing-icon">🎤⏳</span>
+        <div class="pairing-text">
+          <div class="pairing-label">Full Capstone Energy</div>
+          <div class="pairing-exercises">Oxford Closing Statement + Time Capsule</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Submission Section -->
+  <section class="submission-section">
+    <h2 class="submission-title">Submission</h2>
+    <p class="submission-note">This is not graded. It is a closing ritual.</p>
+    <p class="submission-text">Save your two deliverables locally. If you want, email them to yourself with the subject line: <strong>'Capstone, Dec 2025'</strong> so future-you actually finds them.</p>
+    <div class="time-estimate">⏱️ Estimated time: 30-50 minutes</div>
+  </section>
+
+  <!-- Closing Section -->
+  <section class="closing-section">
+    <div class="closing-box">
+      <h2 class="closing-title">A closing thought</h2>
+      <p class="closing-text">Today is not about proving you know things. It is about leaving with a clearer professional identity, a sharper way of thinking, and a couple of tools you will actually reuse.</p>
+      <p class="closing-text">You are walking out with choices, standards, and a working approach to data and AI that you can defend. Thank you for showing up, thinking hard, and building your own judgement.</p>
+      <p class="closing-excited">I am genuinely excited to see what you build next.</p>
+      <div class="closing-luck">Good luck! 🍀</div>
+      <div class="closing-signature">— Victor</div>
+    </div>
+  </section>
+
+  <!-- Selection Counter -->
+  <div class="selection-counter" id="selection-counter">
+    <span class="counter-text">Selected: <span id="counter-number">0</span>/2</span>
+    <div class="counter-dots">
+      <div class="counter-dot" id="dot-1"></div>
+      <div class="counter-dot" id="dot-2"></div>
+    </div>
+  </div>
+
+  <script>
+    const exercises = [
+      {
+        emoji: "⏳",
+        name: "The Time Capsule",
+        tagline: "Future Me, Don't Forget This",
+        vibe: "Reflective, intimate, identity-forward, surprisingly motivating.",
+        bestFor: "Students who want meaning, closure, and a clean personal narrative.",
+        whatYouDo: "You write a short message to your future self as a professional who uses AI and data well. You capture what you now believe, what you refuse to do, and what you will practise.",
+        deliverable: "A one-page Time Capsule Letter (PDF or Word).",
+        prompts: [
+          "'In six months, I want you to remember...' — name your top 3 lessons.",
+          "'The line I will not cross is...' — name 1 ethical boundary.",
+          "'My unfair advantage is...' — name 1 skill you will compound.",
+          "'When I feel overwhelmed, I will...' — name 1 simple operating rule.",
+          "'The work I want to be known for is...' — name 1 professional identity claim."
+        ],
+        liveOption: "Seal it with a 10-second 'private pledge' to yourself, no sharing required.",
+        color: "orange"
+      },
+      {
+        emoji: "🧭",
+        name: "The AI Operating Brief",
+        tagline: "How I Use AI Like a Professional",
+        vibe: "Pragmatic, confident, systems-thinking, career-useful.",
+        bestFor: "Students who want a reusable framework and guardrails they can actually deploy.",
+        whatYouDo: "You create a one-page operating document that tells future-you how to use AI and data tools responsibly and effectively, across business contexts.",
+        deliverable: "A one-page AI Operating Brief (A4, maximum one page).",
+        prompts: [
+          "Purpose: What I use AI for in business, in one sentence.",
+          "My Principles: 3 rules I will not break.",
+          "My Workflow: input → thinking → output → review, in 4 lines.",
+          "Risk Checklist: privacy, bias, hallucinations, IP, governance.",
+          "My Prompt Pack: 3 prompts I will reuse (analysis, synthesis, stakeholder-friendly).",
+          "My 'Stop' Conditions: when I must escalate to a human, policy, or domain expert."
+        ],
+        liveOption: "Pair swap for a 2-minute 'professional sanity check.'",
+        color: "green"
+      },
+      {
+        emoji: "🎬",
+        name: "The Micro-Demo",
+        tagline: "Show, Don't Tell",
+        vibe: "Energetic, playful, confident — 'I can actually do this.'",
+        bestFor: "Students who want a memorable win and something to show employers.",
+        whatYouDo: "You build a tiny, clear demonstration of value using either BI logic or AI assistance. It's not about perfection — it's about clarity and usefulness.",
+        deliverable: "A 60-90 second live demo in class, OR a single-slide Demo Slide with a before/after story.",
+        prompts: [
+          "'This is the business problem.'",
+          "'This is what I used.'",
+          "'This is the result in one sentence.'",
+          "'This is the risk, and how I mitigated it.'",
+          "'This is the decision I would take next.'"
+        ],
+        liveOption: "Present to a partner, not the whole room — unless you want to go public.",
+        color: "purple"
+      },
+      {
+        emoji: "🤝",
+        name: "The Human Skills Commitment",
+        tagline: "The Part AI Can't Replace",
+        vibe: "Empowering, grounded, human-first, quietly fierce.",
+        bestFor: "Students who want to leave with personal standards, not just tools.",
+        whatYouDo: "You choose one human skill that will become your signature in the age of AI and data, then you define how you will practise it.",
+        deliverable: "A one-page Commitment Contract, signed and dated.",
+        prompts: [
+          "Choose one skill track: Judgement / Communication / Ethics / Curiosity / Courage.",
+          "'My chosen skill is...'",
+          "'I will demonstrate it by...' (3 behaviours)",
+          "'I will practise it weekly by...' (1 ritual)",
+          "'I will notice I'm slipping when...' (1 early warning signal)",
+          "'My accountability partner is...' (optional, can be yourself)"
+        ],
+        liveOption: "One sentence spoken aloud, volunteer-only.",
+        color: "blue"
+      },
+      {
+        emoji: "🌍",
+        name: "One Claim, Three Worlds",
+        tagline: "Same Idea, Different Audiences",
+        vibe: "Epistemological, communicative, surprisingly revealing.",
+        bestFor: "Students who want to sharpen how they translate ideas across contexts.",
+        whatYouDo: "You pick one strong claim about AI (e.g., 'LLMs cannot truly understand,' 'Alignment is an engineering problem,' 'AI will transform scientific discovery') and rewrite it for three different audiences: a philosopher, a regulator, and a product team.",
+        deliverable: "Three versions (120-180 words each) + a 3-5 line reflection on what changed and why.",
+        prompts: [
+          "Version 1 (Philosopher): What conceptual precision does this audience demand?",
+          "Version 2 (Regulator): What risks, harms, and governance levers matter here?",
+          "Version 3 (Product Team): What's actionable, shippable, and testable?",
+          "Reflection: What got lost in translation? What got sharper?"
+        ],
+        liveOption: "Read one version aloud and have the room guess which audience it was written for.",
+        color: "pink"
+      },
+      {
+        emoji: "⚔️",
+        name: "Steelman and Synthesis",
+        tagline: "Argue Both Sides, Then Transcend Them",
+        vibe: "Intellectually rigorous, fair-minded, integrative.",
+        bestFor: "Students who want to practise intellectual virtue and nuanced thinking.",
+        whatYouDo: "You choose two opposed stances on AI (e.g., 'LLMs are mere stochastic parrots' vs 'LLMs exhibit emergent understanding'; or 'AI risk is overblown' vs 'AI risk is existential'). You write the strongest possible version of each, then propose a synthesis that keeps the best of both without contradiction.",
+        deliverable: "Two steelmans (120-150 words each) + one synthesis claim (80-100 words).",
+        prompts: [
+          "Steelman A: What's the most charitable, rigorous version of this position?",
+          "Steelman B: Same — make it as strong as possible, even if you disagree.",
+          "Synthesis: What would a third position look like that honours both insights?",
+          "Optional: Name the intellectual move you made (dialectic, Hegelian, pragmatist, etc.)."
+        ],
+        liveOption: "Pair up: one person reads Steelman A, the other reads Steelman B, then you co-create the synthesis.",
+        color: "teal"
+      },
+      {
+        emoji: "🔍",
+        name: "Phenomenology of Delegation",
+        tagline: "What Happens When You Hand Over Thinking?",
+        vibe: "Introspective, ethical, philosophically grounded.",
+        bestFor: "Students who want to examine their own relationship with AI tools.",
+        whatYouDo: "You write a brief 'field note' on a moment you delegated cognition to an AI tool (real or imagined). You examine what changed in your attention, responsibility, confidence, and self-trust. Then you state a principle for 'responsible delegation.'",
+        deliverable: "A 200-250 word field note + one principle formatted as a rule.",
+        prompts: [
+          "The moment: Describe a specific instance when you handed a cognitive task to AI.",
+          "Attention: What did you stop paying attention to?",
+          "Responsibility: Did accountability shift? To whom?",
+          "Confidence: Did you trust the output more or less than your own judgement?",
+          "Self-trust: What happened to your sense of your own competence?",
+          "Principle: 'When delegating cognition, I will always...'"
+        ],
+        liveOption: "Share your principle with a partner — do they hold you to it?",
+        color: "gold"
+      },
+      {
+        emoji: "🎤",
+        name: "The Oxford Closing Statement",
+        tagline: "Two Minutes to Say What Matters",
+        vibe: "Rhetorical, precise, memorable — your capstone moment.",
+        bestFor: "Students who want to practise distilling insight into eloquence.",
+        whatYouDo: "Imagine you are giving the final two minutes of a public Oxford lecture titled 'Business in the Age of AI.' You must deliver a closing statement with exactly: one thesis, one risk, one hope, one norm, and one question to leave hanging.",
+        deliverable: "A 180-220 word closing statement, structured with all five elements.",
+        prompts: [
+          "Thesis: The single most important truth about AI in business.",
+          "Risk: The danger we are most likely to underestimate.",
+          "Hope: The possibility that makes this moment exciting, not terrifying.",
+          "Norm: The standard of conduct you want your audience to adopt.",
+          "Question: The unresolved question you want to leave ringing in the room."
+        ],
+        liveOption: "Deliver it standing, timed at exactly 2 minutes. Volunteer for the full room if you dare.",
+        color: "red"
+      }
+    ];
+
+    let selectedCount = 0;
+    const maxSelections = 2;
+
+    function createExerciseCard(exercise, index) {
+      const card = document.createElement('div');
+      card.className = 'exercise-card';
+      card.dataset.index = index + 1;
+      card.dataset.color = exercise.color;
+
+      card.innerHTML = `
+        <div class="exercise-header">
+          <div class="exercise-number">${index + 1}</div>
+          <div class="exercise-title-group">
+            <div class="exercise-emoji-title">
+              <span>${exercise.emoji}</span>
+              <span>${exercise.name}</span>
+            </div>
+            <div class="exercise-tagline">"${exercise.tagline}"</div>
+          </div>
+          <div class="exercise-checkbox" onclick="event.stopPropagation(); toggleSelection(this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <div class="exercise-toggle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+        </div>
+        <div class="exercise-content">
+          <div class="exercise-body">
+            <div class="exercise-meta">
+              <span class="meta-tag meta-vibe">✨ ${exercise.vibe}</span>
+              <span class="meta-tag meta-best-for">🎯 ${exercise.bestFor}</span>
+            </div>
+            <div class="exercise-description">
+              <div class="description-label">What you do</div>
+              <p class="description-text">${exercise.whatYouDo}</p>
+            </div>
+            <div class="deliverable-box">
+              <strong>Deliverable:</strong> ${exercise.deliverable}
+            </div>
+            <div class="prompts-toggle" onclick="togglePrompts(this)">
+              <span class="prompts-toggle-title">📝 Template prompts</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
+            <div class="prompts-content">
+              <ul class="prompts-list">
+                ${exercise.prompts.map(p => `<li>${p}</li>`).join('')}
+              </ul>
+            </div>
+            <div class="live-moment">
+              <div class="live-moment-label">✨ Optional live moment</div>
+              <p class="live-moment-text">${exercise.liveOption}</p>
+            </div>
+          </div>
+        </div>
+      `;
+
+      card.querySelector('.exercise-header').addEventListener('click', (e) => {
+        if (!e.target.closest('.exercise-checkbox')) {
+          card.classList.toggle('open');
+        }
+      });
+
+      return card;
+    }
+
+    function togglePrompts(element) {
+      element.classList.toggle('open');
+    }
+
+    function toggleSelection(checkbox) {
+      if (checkbox.classList.contains('checked')) {
+        checkbox.classList.remove('checked');
+        selectedCount--;
+      } else if (selectedCount < maxSelections) {
+        checkbox.classList.add('checked');
+        selectedCount++;
+      }
+      updateCounter();
+    }
+
+    function updateCounter() {
+      document.getElementById('counter-number').textContent = selectedCount;
+      document.getElementById('dot-1').classList.toggle('filled', selectedCount >= 1);
+      document.getElementById('dot-2').classList.toggle('filled', selectedCount >= 2);
+      document.getElementById('selection-counter').classList.toggle('complete', selectedCount === 2);
+    }
+
+    // Initialize
+    const container = document.getElementById('exercises-container');
+    exercises.forEach((exercise, index) => {
+      container.appendChild(createExerciseCard(exercise, index));
+    });
+  </script>
+</body>
+</html>
