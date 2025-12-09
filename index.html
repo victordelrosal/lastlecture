@@ -164,7 +164,7 @@
       80% { opacity: 0.3; }
     }
 
-    /* The Sun - warm radiant core */
+    /* The Sun - warm radiant core with pulse */
     .sun {
       position: absolute;
       top: 12%;
@@ -174,17 +174,23 @@
       border-radius: 50%;
       background: radial-gradient(circle,
         #ffffff 0%,
-        #ffffff 40%,
-        #fffdf0 60%,
-        #fff8dc 80%,
+        #ffffff 35%,
+        #fffef5 50%,
+        #fff8dc 70%,
         rgba(255, 248, 220, 0) 100%
       );
       opacity: 0;
-      animation: sunCycle 600s ease-in-out infinite;
+      animation:
+        sunCycle 600s ease-in-out infinite,
+        sunCorePulse 3s ease-in-out infinite;
       pointer-events: none;
+      box-shadow:
+        0 0 30px 10px rgba(255, 255, 255, 0.8),
+        0 0 60px 20px rgba(255, 250, 200, 0.5),
+        0 0 100px 40px rgba(255, 220, 120, 0.3);
     }
 
-    /* Sun warm glow layers */
+    /* Sun warm glow layers - inner pulse */
     .sun::before {
       content: '';
       position: absolute;
@@ -195,38 +201,74 @@
       transform: translate(-50%, -50%);
       border-radius: 50%;
       background: radial-gradient(circle,
-        rgba(255, 255, 255, 0.9) 0%,
-        rgba(255, 255, 200, 0.6) 10%,
-        rgba(255, 240, 120, 0.4) 25%,
-        rgba(255, 200, 80, 0.2) 45%,
-        rgba(255, 160, 50, 0.1) 65%,
-        rgba(255, 140, 40, 0.05) 80%,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(255, 255, 220, 0.7) 8%,
+        rgba(255, 245, 150, 0.45) 20%,
+        rgba(255, 220, 100, 0.25) 35%,
+        rgba(255, 180, 60, 0.12) 55%,
+        rgba(255, 150, 40, 0.04) 75%,
         transparent 100%
       );
-      animation: sunPulse 8s ease-in-out infinite;
+      animation: sunInnerPulse 4s ease-in-out infinite;
     }
 
-    /* Sun outer orange halo */
+    /* Sun outer halo - very transparent, gentle pulse */
     .sun::after {
       content: '';
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 400px;
-      height: 400px;
+      width: 500px;
+      height: 500px;
       transform: translate(-50%, -50%);
       border-radius: 50%;
       background: radial-gradient(circle,
-        rgba(255, 220, 100, 0.15) 0%,
-        rgba(255, 180, 60, 0.08) 30%,
-        rgba(255, 150, 40, 0.03) 60%,
+        rgba(255, 240, 150, 0.08) 0%,
+        rgba(255, 200, 80, 0.04) 25%,
+        rgba(255, 170, 50, 0.02) 50%,
+        rgba(255, 150, 40, 0.005) 75%,
         transparent 100%
       );
+      animation: sunOuterPulse 6s ease-in-out infinite;
     }
 
-    @keyframes sunPulse {
-      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-      50% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.9; }
+    @keyframes sunCorePulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow:
+          0 0 30px 10px rgba(255, 255, 255, 0.8),
+          0 0 60px 20px rgba(255, 250, 200, 0.5),
+          0 0 100px 40px rgba(255, 220, 120, 0.3);
+      }
+      50% {
+        transform: scale(1.08);
+        box-shadow:
+          0 0 40px 15px rgba(255, 255, 255, 0.9),
+          0 0 80px 30px rgba(255, 250, 200, 0.6),
+          0 0 120px 50px rgba(255, 220, 120, 0.35);
+      }
+    }
+
+    @keyframes sunInnerPulse {
+      0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: translate(-50%, -50%) scale(1.12);
+        opacity: 0.85;
+      }
+    }
+
+    @keyframes sunOuterPulse {
+      0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.7;
+      }
+      50% {
+        transform: translate(-50%, -50%) scale(1.15);
+        opacity: 1;
+      }
     }
 
     @keyframes sunCycle {
