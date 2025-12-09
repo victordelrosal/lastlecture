@@ -4,9 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Last Lecture | Final Class Exercise</title>
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="The Last Lecture | Final Class Exercise">
+  <meta property="og:description" content="Choose two experiences from the capstone menu. A closing ritual by Victor del Rosal.">
+  <meta property="og:image" content="android-chrome-512x512.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Last Lecture">
+  <meta name="twitter:description" content="Choose two experiences from the capstone menu.">
+  <meta name="twitter:image" content="android-chrome-512x512.png">
+
+  <!-- Theme color for mobile browsers -->
+  <meta name="theme-color" content="#060912">
+  <meta name="msapplication-TileColor" content="#060912">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
   <style>
     :root {
       --color-bg: #fafafa;
@@ -54,25 +75,74 @@
       min-height: 100vh;
     }
 
-    /* Hero Section - Dusk/Sunset Effect */
+    /* Hero Section - Day/Night Cycle (10 minute cycle) */
     .hero {
-      background: linear-gradient(180deg,
-        #060912 0%,        /* Deeper midnight at top */
-        #0a0f1a 10%,       /* Rich dark navy */
-        #0d1321 20%,       /* Dark twilight */
-        #12203a 40%,       /* Twilight blue */
-        #1a2d4d 55%,       /* Deep dusk blue */
-        #243550 70%,       /* Transitional blue */
-        #2f3d55 82%,       /* Purple-touched twilight */
-        #3d4258 92%,       /* Mauve transition zone */
-        #4a4555 100%       /* Warm purple base for glow */
-      );
       padding: 100px 24px 140px;
       text-align: center;
       position: relative;
       overflow: hidden;
+      animation: skyGradientCycle 600s ease-in-out infinite;
     }
 
+    @keyframes skyGradientCycle {
+      /* Dusk - starting state */
+      0%, 100% {
+        background: linear-gradient(180deg,
+          #060912 0%,
+          #0a0f1a 10%,
+          #0d1321 20%,
+          #12203a 40%,
+          #1a2d4d 55%,
+          #243550 70%,
+          #2f3d55 82%,
+          #3d4258 92%,
+          #4a4555 100%
+        );
+      }
+      /* Transition to dawn */
+      20% {
+        background: linear-gradient(180deg,
+          #0a1525 0%,
+          #152540 10%,
+          #1e3a5a 20%,
+          #2a5075 40%,
+          #3a6a90 55%,
+          #5588aa 70%,
+          #7099b8 82%,
+          #8ab0c8 92%,
+          #a5c4d8 100%
+        );
+      }
+      /* Full day - bright blue sky (dark at top, light at bottom) */
+      45%, 55% {
+        background: linear-gradient(180deg,
+          #122E74 0%,
+          #122E74 10%,
+          #014992 10%,
+          #014992 30%,
+          #007ED4 30%,
+          #007ED4 55%,
+          #00A3FA 55%,
+          #00A3FA 100%
+        );
+      }
+      /* Transition back to dusk */
+      80% {
+        background: linear-gradient(180deg,
+          #0a1525 0%,
+          #152540 10%,
+          #1e3a5a 20%,
+          #2a5075 40%,
+          #3a6a90 55%,
+          #5588aa 70%,
+          #7099b8 82%,
+          #8ab0c8 92%,
+          #a5c4d8 100%
+        );
+      }
+    }
+
+    /* Sunset glow overlay - fades during day */
     .hero::before {
       content: '';
       position: absolute;
@@ -81,20 +151,97 @@
       right: 0;
       bottom: 0;
       background:
-        /* Warm sunset glow from bottom center - enhanced */
         radial-gradient(ellipse 140% 50% at 50% 110%, rgba(196, 88, 48, 0.5) 0%, rgba(180, 70, 40, 0.25) 30%, transparent 55%),
-        /* Left horizon orange accent - enhanced */
         radial-gradient(ellipse 70% 38% at 20% 100%, rgba(210, 95, 45, 0.4) 0%, transparent 50%),
-        /* Right horizon warm glow - enhanced */
         radial-gradient(ellipse 60% 32% at 80% 105%, rgba(190, 80, 42, 0.35) 0%, transparent 45%),
-        /* Subtle deep orange reflection mid-low */
         radial-gradient(ellipse 100% 28% at 50% 95%, rgba(175, 70, 35, 0.3) 0%, transparent 50%),
-        /* Pink/magenta horizon touch */
         radial-gradient(ellipse 80% 20% at 50% 100%, rgba(180, 60, 90, 0.15) 0%, transparent 50%),
-        /* Very subtle purple ambient at top */
         radial-gradient(ellipse 90% 40% at 50% -10%, rgba(70, 60, 110, 0.15) 0%, transparent 50%);
       pointer-events: none;
+      animation: sunsetGlowCycle 600s ease-in-out infinite;
     }
+
+    @keyframes sunsetGlowCycle {
+      0%, 100% { opacity: 1; }
+      20% { opacity: 0.3; }
+      45%, 55% { opacity: 0; }
+      80% { opacity: 0.3; }
+    }
+
+    /* The Sun - warm radiant core */
+    .sun {
+      position: absolute;
+      top: 12%;
+      left: 22%;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: radial-gradient(circle,
+        #ffffff 0%,
+        #ffffff 40%,
+        #fffdf0 60%,
+        #fff8dc 80%,
+        rgba(255, 248, 220, 0) 100%
+      );
+      opacity: 0;
+      animation: sunCycle 600s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    /* Sun warm glow layers */
+    .sun::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 280px;
+      height: 280px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: radial-gradient(circle,
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(255, 255, 200, 0.6) 10%,
+        rgba(255, 240, 120, 0.4) 25%,
+        rgba(255, 200, 80, 0.2) 45%,
+        rgba(255, 160, 50, 0.1) 65%,
+        rgba(255, 140, 40, 0.05) 80%,
+        transparent 100%
+      );
+      animation: sunPulse 8s ease-in-out infinite;
+    }
+
+    /* Sun outer orange halo */
+    .sun::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 400px;
+      height: 400px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: radial-gradient(circle,
+        rgba(255, 220, 100, 0.15) 0%,
+        rgba(255, 180, 60, 0.08) 30%,
+        rgba(255, 150, 40, 0.03) 60%,
+        transparent 100%
+      );
+    }
+
+    @keyframes sunPulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      50% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.9; }
+    }
+
+    @keyframes sunCycle {
+      0%, 100% { opacity: 0; transform: translateY(20px); }
+      15% { opacity: 0; transform: translateY(20px); }
+      35% { opacity: 1; transform: translateY(0); }
+      45%, 55% { opacity: 1; transform: translateY(0); }
+      65% { opacity: 1; transform: translateY(0); }
+      85% { opacity: 0; transform: translateY(20px); }
+    }
+
 
     /* Celestial effects container */
     .celestial-canvas {
@@ -107,7 +254,7 @@
       overflow: hidden;
     }
 
-    /* Twinkling stars */
+    /* Twinkling stars - fade during day */
     .star {
       position: absolute;
       width: 2px;
@@ -115,8 +262,17 @@
       background: white;
       border-radius: 50%;
       opacity: 0;
-      animation: twinkle var(--duration, 4s) ease-in-out infinite;
+      animation:
+        twinkle var(--duration, 4s) ease-in-out infinite,
+        starsDayCycle 600s ease-in-out infinite;
       animation-delay: var(--delay, 0s);
+    }
+
+    @keyframes starsDayCycle {
+      0%, 100% { visibility: visible; }
+      20% { visibility: visible; }
+      30%, 70% { visibility: hidden; }
+      80% { visibility: visible; }
     }
 
     .star::after {
@@ -149,7 +305,7 @@
       80% { opacity: 0.15; transform: scale(1); }
     }
 
-    /* Subtle meteor streaks */
+    /* Subtle meteor streaks - hidden during day */
     .meteor {
       position: absolute;
       width: 1px;
@@ -157,7 +313,9 @@
       background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%);
       opacity: 0;
       transform: rotate(-45deg);
-      animation: meteor var(--meteor-duration, 12s) ease-in-out infinite;
+      animation:
+        meteor var(--meteor-duration, 12s) ease-in-out infinite,
+        starsDayCycle 600s ease-in-out infinite;
       animation-delay: var(--meteor-delay, 0s);
     }
 
@@ -291,7 +449,7 @@
 
     /* Instructions Card */
     .instructions-card {
-      background: var(--color-bg-card);
+      background: linear-gradient(to bottom, #ffffff 0%, #f5f5f7 50%, #ebebed 100%);
       border-radius: var(--radius-xl);
       padding: 48px 56px;
       margin: -80px auto 64px;
@@ -405,7 +563,7 @@
     }
 
     .exercise-card {
-      background: var(--color-bg-card);
+      background: linear-gradient(to bottom, #ffffff 0%, #f5f5f7 50%, #ebebed 100%);
       border-radius: var(--radius-lg);
       margin-bottom: 16px;
       box-shadow: var(--shadow-sm);
@@ -440,22 +598,25 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: 20px;
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-weight: 400;
+      font-size: 26px;
+      letter-spacing: 0.02em;
       color: white;
       flex-shrink: 0;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      background: linear-gradient(135deg,
+        #0a0f1a 0%,
+        #12203a 25%,
+        #1a2d4d 45%,
+        #2f3d55 65%,
+        #4a4555 80%,
+        #c45830 95%,
+        #d4663c 100%
+      );
+      box-shadow:
+        0 4px 16px rgba(0,0,0,0.25),
+        inset 0 1px 0 rgba(255,255,255,0.1);
     }
-
-    .exercise-card[data-color="orange"] .exercise-number { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
-    .exercise-card[data-color="green"] .exercise-number { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
-    .exercise-card[data-color="purple"] .exercise-number { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-    .exercise-card[data-color="blue"] .exercise-number { background: linear-gradient(135deg, #0093E9 0%, #80D0C7 100%); }
-    .exercise-card[data-color="pink"] .exercise-number { background: linear-gradient(135deg, #FF6B6B 0%, #FFE66D 100%); }
-    .exercise-card[data-color="teal"] .exercise-number { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
-    .exercise-card[data-color="gold"] .exercise-number { background: linear-gradient(135deg, #F2994A 0%, #F2C94C 100%); }
-    .exercise-card[data-color="red"] .exercise-number { background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%); }
 
     .exercise-title-group {
       flex: 1;
@@ -798,7 +959,7 @@
 
     /* Pairings Section */
     .pairings-section {
-      background: var(--color-bg-card);
+      background: linear-gradient(to bottom, #ffffff 0%, #f5f5f7 50%, #ebebed 100%);
       border-radius: var(--radius-xl);
       padding: 56px;
       margin: 64px auto;
@@ -1178,6 +1339,7 @@
   <!-- Hero Section -->
   <header class="hero">
     <div class="celestial-canvas" id="hero-celestial"></div>
+    <div class="sun"></div>
     <div class="hero-badge">
       <span class="hero-badge-dot"></span>
       Final Session
@@ -1185,8 +1347,7 @@
     <h1 class="hero-title">The Last Lecture</h1>
     <p class="hero-subtitle">Choose 2 of 8 Exercises</p>
     <div class="hero-modules">
-      Big Data and AI in Business: Strategy and Emerging Trends<br>
-      & Business Intelligence
+      Victor del Rosal
     </div>
     <div class="hero-date">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1195,7 +1356,7 @@
         <line x1="8" y1="2" x2="8" y2="6"></line>
         <line x1="3" y1="10" x2="21" y2="10"></line>
       </svg>
-      Tuesday, 9 December 2025
+      <span id="live-datetime"></span>
     </div>
   </header>
 
@@ -1213,7 +1374,7 @@
         <h2 class="instructions-title">How It Works</h2>
       </div>
       <p class="instructions-text">Select <strong>two</strong> experiences from the menu below.</p>
-      <p class="instructions-text">Choose one that challenges your intellect, one that resonates emotionally — or simply pick two that match the energy you want to carry forward.</p>
+      <p class="instructions-text">Choose one that challenges your intellect, one that resonates emotionally, or simply pick two that match the energy you want to carry forward.</p>
       <div class="instructions-rule">
         <div class="instructions-rule-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1233,84 +1394,6 @@
       <div id="exercises-container"></div>
     </div>
   </section>
-
-  <!-- Pairings Section -->
-  <div class="container">
-    <div class="pairings-section">
-      <div class="pairings-header">
-        <div class="pairings-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"></circle>
-            <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
-            <line x1="9" y1="9" x2="9.01" y2="9"></line>
-            <line x1="15" y1="9" x2="15.01" y2="9"></line>
-          </svg>
-        </div>
-        <h2 class="pairings-title">Suggested Pairings</h2>
-        <p class="pairings-intro">Consider these combinations that complement each other well</p>
-      </div>
-
-      <div class="pairing-item">
-        <span class="pairing-icons">⏳ 🔮</span>
-        <div class="pairing-text">
-          <div class="pairing-label">Present + Future Self</div>
-          <div class="pairing-exercises">Time Capsule + Three Horizons</div>
-        </div>
-        <svg class="pairing-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="5" y1="12" x2="19" y2="12"></line>
-          <polyline points="12 5 19 12 12 19"></polyline>
-        </svg>
-      </div>
-
-      <div class="pairing-item">
-        <span class="pairing-icons">⚓ 🌌</span>
-        <div class="pairing-text">
-          <div class="pairing-label">Personal + Civilizational</div>
-          <div class="pairing-exercises">The Human Anchor + The Civilization Question</div>
-        </div>
-        <svg class="pairing-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="5" y1="12" x2="19" y2="12"></line>
-          <polyline points="12 5 19 12 12 19"></polyline>
-        </svg>
-      </div>
-
-      <div class="pairing-item">
-        <span class="pairing-icons">🔍 🎤</span>
-        <div class="pairing-text">
-          <div class="pairing-label">Philosophical + Rhetorical</div>
-          <div class="pairing-exercises">Phenomenology of Delegation + Oxford Closing Statement</div>
-        </div>
-        <svg class="pairing-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="5" y1="12" x2="19" y2="12"></line>
-          <polyline points="12 5 19 12 12 19"></polyline>
-        </svg>
-      </div>
-
-      <div class="pairing-item">
-        <span class="pairing-icons">🔮 ⚔️</span>
-        <div class="pairing-text">
-          <div class="pairing-label">Identity + Intellectual Rigor</div>
-          <div class="pairing-exercises">Three Horizons + Steelman & Synthesis</div>
-        </div>
-        <svg class="pairing-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="5" y1="12" x2="19" y2="12"></line>
-          <polyline points="12 5 19 12 12 19"></polyline>
-        </svg>
-      </div>
-
-      <div class="pairing-item">
-        <span class="pairing-icons">🌌 🎤</span>
-        <div class="pairing-text">
-          <div class="pairing-label">Full Capstone Energy</div>
-          <div class="pairing-exercises">The Civilization Question + Oxford Closing Statement</div>
-        </div>
-        <svg class="pairing-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="5" y1="12" x2="19" y2="12"></line>
-          <polyline points="12 5 19 12 12 19"></polyline>
-        </svg>
-      </div>
-    </div>
-  </div>
 
   <!-- Submission Section -->
   <section class="submission-section">
@@ -1369,11 +1452,11 @@
         whatYouDo: "You write a short message to your future self as a professional who uses AI and data well. You capture what you now believe, what you refuse to do, and what you will practise.",
         deliverable: "A one-page Time Capsule Letter (PDF or Word)",
         prompts: [
-          "'In six months, I want you to remember...' — name your top 3 lessons.",
-          "'The line I will not cross is...' — name 1 ethical boundary.",
-          "'My unfair advantage is...' — name 1 skill you will compound.",
-          "'When I feel overwhelmed, I will...' — name 1 simple operating rule.",
-          "'The work I want to be known for is...' — name 1 professional identity claim."
+          "'In six months, I want you to remember...' Name your top 3 lessons.",
+          "'The line I will not cross is...' Name 1 ethical boundary.",
+          "'My unfair advantage is...' Name 1 skill you will compound.",
+          "'When I feel overwhelmed, I will...' Name 1 simple operating rule.",
+          "'The work I want to be known for is...' Name 1 professional identity claim."
         ],
         liveOption: "Seal it with a 10-second 'private pledge' to yourself, no sharing required.",
         color: "orange"
@@ -1406,11 +1489,11 @@
         whatYouDo: "Imagine explaining this moment in history to someone 100 years from now. What is humanity learning? What are we risking? What role do you want to play in this chapter? You write a short reflection that places your professional life inside a civilizational arc.",
         deliverable: "A 250-300 word reflection titled 'Letter to the 22nd Century'",
         prompts: [
-          "'The question our generation is answering is...' — name the civilizational challenge.",
-          "'What we are learning, often painfully, is...' — name 1 collective lesson.",
-          "'The mistake we must not make is...' — name 1 civilizational risk.",
-          "'My small part in this story is...' — name your role, however modest.",
-          "'What I hope my grandchildren will say about this era is...' — name 1 legacy hope."
+          "'The question our generation is answering is...' Name the civilizational challenge.",
+          "'What we are learning, often painfully, is...' Name 1 collective lesson.",
+          "'The mistake we must not make is...' Name 1 civilizational risk.",
+          "'My small part in this story is...' Name your role, however modest.",
+          "'What I hope my grandchildren will say about this era is...' Name 1 legacy hope."
         ],
         liveOption: "Read your final sentence aloud. Let the room sit with it for 10 seconds of silence.",
         color: "purple"
@@ -1421,15 +1504,15 @@
         tagline: "What Will You Never Outsource?",
         vibe: "Existential, protective, defiant",
         bestFor: "Students who want to draw a line",
-        whatYouDo: "You identify what you will never delegate to a machine — not because you can't, but because doing so would diminish something essential about who you are. You write a short manifesto about the parts of your mind, your relationships, and your work that you will protect.",
+        whatYouDo: "You identify what you will never delegate to a machine, not because you can't, but because doing so would diminish something essential about who you are. You write a short manifesto about the parts of your mind, your relationships, and your work that you will protect.",
         deliverable: "A one-page Human Anchor Manifesto, signed and dated",
         prompts: [
-          "'The part of my thinking I will never outsource is...' — name 1 cognitive sacred ground.",
-          "'The conversation I will always have in person is...' — name 1 relationship you protect.",
-          "'The struggle I refuse to skip is...' — name 1 difficulty that makes you grow.",
-          "'What I want my children to know about this era is...' — name 1 lesson for the next generation.",
-          "'The question that keeps me human is...' — name 1 question you will never stop asking.",
-          "'I will know I have lost my way if...' — name 1 warning sign of erosion."
+          "'The part of my thinking I will never outsource is...' Name 1 cognitive sacred ground.",
+          "'The conversation I will always have in person is...' Name 1 relationship you protect.",
+          "'The struggle I refuse to skip is...' Name 1 difficulty that makes you grow.",
+          "'What I want my children to know about this era is...' Name 1 lesson for the next generation.",
+          "'The question that keeps me human is...' Name 1 question you will never stop asking.",
+          "'I will know I have lost my way if...' Name 1 warning sign of erosion."
         ],
         liveOption: "Share one anchor with a partner. Ask them: 'Will you hold me to this?'",
         color: "blue"
@@ -1440,15 +1523,15 @@
         tagline: "Letters to Your Future Selves",
         vibe: "Temporal, identity-shaping, emotional",
         bestFor: "Students who think seriously about becoming",
-        whatYouDo: "You write three short letters — to yourself in 3 years, 5 years, and 10 years. Each letter answers: What do I hope you have learned? What do I hope you have built? What do I hope you have protected? You are not predicting — you are planting seeds.",
+        whatYouDo: "You write three short letters to yourself in 3 years, 5 years, and 10 years. Each letter answers: What do I hope you have learned? What do I hope you have built? What do I hope you have protected? You are not predicting; you are planting seeds.",
         deliverable: "Three letters (100-150 words each), dated and sealed",
         prompts: [
-          "Letter 1 (3 years): 'By now, I hope you have stopped...' — name 1 habit to shed.",
-          "Letter 1 (3 years): 'By now, I hope you have started...' — name 1 practice to begin.",
-          "Letter 2 (5 years): 'The person you have become is someone who...' — name 1 identity shift.",
-          "Letter 2 (5 years): 'The work that now defines you is...' — name 1 professional anchor.",
-          "Letter 3 (10 years): 'The question you are still asking is...' — name 1 enduring question.",
-          "Letter 3 (10 years): 'The people around you now are...' — describe the community you've built."
+          "Letter 1 (3 years): 'By now, I hope you have stopped...' Name 1 habit to shed.",
+          "Letter 1 (3 years): 'By now, I hope you have started...' Name 1 practice to begin.",
+          "Letter 2 (5 years): 'The person you have become is someone who...' Name 1 identity shift.",
+          "Letter 2 (5 years): 'The work that now defines you is...' Name 1 professional anchor.",
+          "Letter 3 (10 years): 'The question you are still asking is...' Name 1 enduring question.",
+          "Letter 3 (10 years): 'The people around you now are...' Describe the community you've built."
         ],
         liveOption: "Read one sentence from your 10-year letter. Let it land.",
         color: "pink"
@@ -1463,7 +1546,7 @@
         deliverable: "Two steelmans (120-150 words each) + one synthesis claim (80-100 words)",
         prompts: [
           "Steelman A: What's the most charitable, rigorous version of this position?",
-          "Steelman B: Same — make it as strong as possible, even if you disagree.",
+          "Steelman B: Same. Make it as strong as possible, even if you disagree.",
           "Synthesis: What would a third position look like that honours both insights?",
           "Optional: Name the intellectual move you made (dialectic, Hegelian, pragmatist, etc.)."
         ],
@@ -1486,7 +1569,7 @@
           "Self-trust: What happened to your sense of your own competence?",
           "Principle: 'When delegating cognition, I will always...'"
         ],
-        liveOption: "Share your principle with a partner — do they hold you to it?",
+        liveOption: "Share your principle with a partner. Do they hold you to it?",
         color: "gold"
       },
       {
@@ -1687,6 +1770,23 @@
     // Initialize celestial effects for both sections
     createCelestialEffects('hero-celestial', 30, 2);
     createCelestialEffects('closing-celestial', 25, 2);
+
+    // Live date and time
+    function updateDateTime() {
+      const now = new Date();
+      const options = {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      };
+      const formatted = now.toLocaleDateString('en-GB', options);
+      document.getElementById('live-datetime').textContent = formatted;
+    }
+    updateDateTime();
+    setInterval(updateDateTime, 60000); // Update every minute
   </script>
 </body>
 </html>
