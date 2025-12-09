@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Capstone Menu | Final Class Exercise</title>
+  <title>The Last Lecture | Final Class Exercise</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -57,12 +57,13 @@
     /* Hero Section - Dusk/Sunset Effect */
     .hero {
       background: linear-gradient(180deg,
-        #080b14 0%,        /* Deep midnight at top */
-        #0d1321 15%,       /* Rich dark navy */
-        #12203a 35%,       /* Twilight blue */
-        #1a2d4d 50%,       /* Deep dusk blue */
-        #243550 65%,       /* Transitional blue */
-        #2f3d55 80%,       /* Purple-touched twilight */
+        #060912 0%,        /* Deeper midnight at top */
+        #0a0f1a 10%,       /* Rich dark navy */
+        #0d1321 20%,       /* Dark twilight */
+        #12203a 40%,       /* Twilight blue */
+        #1a2d4d 55%,       /* Deep dusk blue */
+        #243550 70%,       /* Transitional blue */
+        #2f3d55 82%,       /* Purple-touched twilight */
         #3d4258 92%,       /* Mauve transition zone */
         #4a4555 100%       /* Warm purple base for glow */
       );
@@ -80,17 +81,110 @@
       right: 0;
       bottom: 0;
       background:
-        /* Warm sunset glow from bottom center */
-        radial-gradient(ellipse 140% 45% at 50% 110%, rgba(196, 88, 48, 0.45) 0%, rgba(180, 70, 40, 0.2) 30%, transparent 55%),
-        /* Left horizon orange accent */
-        radial-gradient(ellipse 70% 35% at 20% 100%, rgba(210, 95, 45, 0.35) 0%, transparent 50%),
-        /* Right horizon warm glow */
-        radial-gradient(ellipse 60% 30% at 80% 105%, rgba(190, 80, 42, 0.3) 0%, transparent 45%),
+        /* Warm sunset glow from bottom center - enhanced */
+        radial-gradient(ellipse 140% 50% at 50% 110%, rgba(196, 88, 48, 0.5) 0%, rgba(180, 70, 40, 0.25) 30%, transparent 55%),
+        /* Left horizon orange accent - enhanced */
+        radial-gradient(ellipse 70% 38% at 20% 100%, rgba(210, 95, 45, 0.4) 0%, transparent 50%),
+        /* Right horizon warm glow - enhanced */
+        radial-gradient(ellipse 60% 32% at 80% 105%, rgba(190, 80, 42, 0.35) 0%, transparent 45%),
         /* Subtle deep orange reflection mid-low */
-        radial-gradient(ellipse 100% 25% at 50% 95%, rgba(175, 70, 35, 0.25) 0%, transparent 50%),
+        radial-gradient(ellipse 100% 28% at 50% 95%, rgba(175, 70, 35, 0.3) 0%, transparent 50%),
+        /* Pink/magenta horizon touch */
+        radial-gradient(ellipse 80% 20% at 50% 100%, rgba(180, 60, 90, 0.15) 0%, transparent 50%),
         /* Very subtle purple ambient at top */
-        radial-gradient(ellipse 90% 40% at 50% -10%, rgba(70, 60, 110, 0.12) 0%, transparent 50%);
+        radial-gradient(ellipse 90% 40% at 50% -10%, rgba(70, 60, 110, 0.15) 0%, transparent 50%);
       pointer-events: none;
+    }
+
+    /* Celestial effects container */
+    .celestial-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    /* Twinkling stars */
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0;
+      animation: twinkle var(--duration, 4s) ease-in-out infinite;
+      animation-delay: var(--delay, 0s);
+    }
+
+    .star::after {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      width: 4px;
+      height: 4px;
+      background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .star.bright {
+      width: 3px;
+      height: 3px;
+    }
+
+    .star.bright::after {
+      top: -2px;
+      left: -2px;
+      width: 7px;
+      height: 7px;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0; transform: scale(0.8); }
+      20% { opacity: 0.15; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.1); }
+      80% { opacity: 0.15; transform: scale(1); }
+    }
+
+    /* Subtle meteor streaks */
+    .meteor {
+      position: absolute;
+      width: 1px;
+      height: 80px;
+      background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%);
+      opacity: 0;
+      transform: rotate(-45deg);
+      animation: meteor var(--meteor-duration, 12s) ease-in-out infinite;
+      animation-delay: var(--meteor-delay, 0s);
+    }
+
+    .meteor::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -1px;
+      width: 3px;
+      height: 3px;
+      background: rgba(255,255,255,0.8);
+      border-radius: 50%;
+      box-shadow: 0 0 6px 2px rgba(255,255,255,0.3);
+    }
+
+    @keyframes meteor {
+      0%, 95%, 100% {
+        opacity: 0;
+        transform: rotate(-45deg) translateY(-100px);
+      }
+      96% {
+        opacity: 0.6;
+      }
+      98% {
+        opacity: 0.3;
+        transform: rotate(-45deg) translateY(200px);
+      }
     }
 
     .hero-badge {
@@ -881,12 +975,13 @@
       background: linear-gradient(180deg,
         #4a4555 0%,        /* Warm purple base from sunset */
         #3d4258 8%,        /* Mauve transition zone */
-        #2f3d55 20%,       /* Purple-touched twilight */
-        #243550 35%,       /* Transitional blue */
-        #1a2d4d 50%,       /* Deep dusk blue */
-        #12203a 65%,       /* Twilight blue */
-        #0d1321 85%,       /* Rich dark navy */
-        #080b14 100%       /* Deep midnight at bottom */
+        #2f3d55 18%,       /* Purple-touched twilight */
+        #243550 30%,       /* Transitional blue */
+        #1a2d4d 45%,       /* Deep dusk blue */
+        #12203a 60%,       /* Twilight blue */
+        #0d1321 78%,       /* Rich dark navy */
+        #0a0f1a 90%,       /* Darker navy */
+        #060912 100%       /* Deep midnight at bottom */
       );
       padding: 100px 24px;
       text-align: center;
@@ -903,14 +998,16 @@
       right: 0;
       bottom: 0;
       background:
-        /* Warm sunset glow from top */
-        radial-gradient(ellipse 140% 45% at 50% -10%, rgba(196, 88, 48, 0.4) 0%, rgba(180, 70, 40, 0.15) 30%, transparent 55%),
-        /* Left top orange accent */
-        radial-gradient(ellipse 70% 35% at 25% 0%, rgba(210, 95, 45, 0.3) 0%, transparent 50%),
-        /* Right top warm glow */
-        radial-gradient(ellipse 60% 30% at 75% -5%, rgba(190, 80, 42, 0.25) 0%, transparent 45%),
+        /* Warm sunset glow from top - enhanced */
+        radial-gradient(ellipse 140% 50% at 50% -10%, rgba(196, 88, 48, 0.45) 0%, rgba(180, 70, 40, 0.2) 30%, transparent 55%),
+        /* Left top orange accent - enhanced */
+        radial-gradient(ellipse 70% 38% at 25% 0%, rgba(210, 95, 45, 0.35) 0%, transparent 50%),
+        /* Right top warm glow - enhanced */
+        radial-gradient(ellipse 60% 32% at 75% -5%, rgba(190, 80, 42, 0.3) 0%, transparent 45%),
+        /* Pink/magenta horizon touch */
+        radial-gradient(ellipse 80% 20% at 50% 0%, rgba(180, 60, 90, 0.12) 0%, transparent 50%),
         /* Subtle purple ambient at bottom */
-        radial-gradient(ellipse 90% 40% at 50% 110%, rgba(70, 60, 110, 0.1) 0%, transparent 50%);
+        radial-gradient(ellipse 90% 40% at 50% 110%, rgba(70, 60, 110, 0.12) 0%, transparent 50%);
       pointer-events: none;
     }
 
@@ -1080,11 +1177,12 @@
 <body>
   <!-- Hero Section -->
   <header class="hero">
+    <div class="celestial-canvas" id="hero-celestial"></div>
     <div class="hero-badge">
       <span class="hero-badge-dot"></span>
       Final Session
     </div>
-    <h1 class="hero-title">The Capstone Menu</h1>
+    <h1 class="hero-title">The Last Lecture</h1>
     <p class="hero-subtitle">Choose 2 of 8 Exercises</p>
     <div class="hero-modules">
       Big Data and AI in Business: Strategy and Emerging Trends<br>
@@ -1237,6 +1335,7 @@
 
   <!-- Closing Section -->
   <section class="closing-section">
+    <div class="celestial-canvas" id="closing-celestial"></div>
     <div class="closing-content">
       <svg class="closing-quote" viewBox="0 0 24 24" fill="currentColor">
         <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
@@ -1541,6 +1640,53 @@
     exercises.forEach((exercise, index) => {
       container.appendChild(createExerciseCard(exercise, index));
     });
+
+    // Celestial effects - elegant stars and meteors
+    function createCelestialEffects(containerId, starCount = 25, meteorCount = 2) {
+      const canvas = document.getElementById(containerId);
+      if (!canvas) return;
+
+      // Create twinkling stars - positioned in upper 60% of container
+      for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.className = 'star' + (Math.random() > 0.85 ? ' bright' : '');
+
+        // Position stars more in the upper/darker part of the sky
+        const topPosition = Math.random() * 60; // 0-60% from top
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = topPosition + '%';
+
+        // Varied twinkle timing for natural effect
+        const duration = 3 + Math.random() * 5; // 3-8s
+        const delay = Math.random() * 8; // 0-8s delay
+        star.style.setProperty('--duration', duration + 's');
+        star.style.setProperty('--delay', delay + 's');
+
+        canvas.appendChild(star);
+      }
+
+      // Create occasional meteors - very rare and subtle
+      for (let i = 0; i < meteorCount; i++) {
+        const meteor = document.createElement('div');
+        meteor.className = 'meteor';
+
+        // Position meteors in upper portion
+        meteor.style.left = 20 + Math.random() * 60 + '%'; // 20-80% from left
+        meteor.style.top = 5 + Math.random() * 30 + '%'; // 5-35% from top
+
+        // Very long cycle for rare appearances
+        const duration = 15 + Math.random() * 20; // 15-35s cycle
+        const delay = i * 12 + Math.random() * 10; // Staggered starts
+        meteor.style.setProperty('--meteor-duration', duration + 's');
+        meteor.style.setProperty('--meteor-delay', delay + 's');
+
+        canvas.appendChild(meteor);
+      }
+    }
+
+    // Initialize celestial effects for both sections
+    createCelestialEffects('hero-celestial', 30, 2);
+    createCelestialEffects('closing-celestial', 25, 2);
   </script>
 </body>
 </html>
