@@ -54,9 +54,18 @@
       min-height: 100vh;
     }
 
-    /* Hero Section */
+    /* Hero Section - Dusk/Sunset Effect */
     .hero {
-      background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      background: linear-gradient(180deg,
+        #080b14 0%,        /* Deep midnight at top */
+        #0d1321 15%,       /* Rich dark navy */
+        #12203a 35%,       /* Twilight blue */
+        #1a2d4d 50%,       /* Deep dusk blue */
+        #243550 65%,       /* Transitional blue */
+        #2f3d55 80%,       /* Purple-touched twilight */
+        #3d4258 92%,       /* Mauve transition zone */
+        #4a4555 100%       /* Warm purple base for glow */
+      );
       padding: 100px 24px 140px;
       text-align: center;
       position: relative;
@@ -71,8 +80,16 @@
       right: 0;
       bottom: 0;
       background:
-        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(120, 119, 198, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(0, 113, 227, 0.1) 0%, transparent 40%);
+        /* Warm sunset glow from bottom center */
+        radial-gradient(ellipse 140% 45% at 50% 110%, rgba(196, 88, 48, 0.45) 0%, rgba(180, 70, 40, 0.2) 30%, transparent 55%),
+        /* Left horizon orange accent */
+        radial-gradient(ellipse 70% 35% at 20% 100%, rgba(210, 95, 45, 0.35) 0%, transparent 50%),
+        /* Right horizon warm glow */
+        radial-gradient(ellipse 60% 30% at 80% 105%, rgba(190, 80, 42, 0.3) 0%, transparent 45%),
+        /* Subtle deep orange reflection mid-low */
+        radial-gradient(ellipse 100% 25% at 50% 95%, rgba(175, 70, 35, 0.25) 0%, transparent 50%),
+        /* Very subtle purple ambient at top */
+        radial-gradient(ellipse 90% 40% at 50% -10%, rgba(70, 60, 110, 0.12) 0%, transparent 50%);
       pointer-events: none;
     }
 
@@ -859,9 +876,18 @@
       stroke: var(--color-primary);
     }
 
-    /* Closing Section */
+    /* Closing Section - Dusk/Sunset Effect (inverted) */
     .closing-section {
-      background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      background: linear-gradient(180deg,
+        #4a4555 0%,        /* Warm purple base from sunset */
+        #3d4258 8%,        /* Mauve transition zone */
+        #2f3d55 20%,       /* Purple-touched twilight */
+        #243550 35%,       /* Transitional blue */
+        #1a2d4d 50%,       /* Deep dusk blue */
+        #12203a 65%,       /* Twilight blue */
+        #0d1321 85%,       /* Rich dark navy */
+        #080b14 100%       /* Deep midnight at bottom */
+      );
       padding: 100px 24px;
       text-align: center;
       color: white;
@@ -877,8 +903,14 @@
       right: 0;
       bottom: 0;
       background:
-        radial-gradient(ellipse 80% 50% at 20% 120%, rgba(120, 119, 198, 0.12) 0%, transparent 50%),
-        radial-gradient(ellipse 60% 40% at 80% 20%, rgba(0, 113, 227, 0.08) 0%, transparent 40%);
+        /* Warm sunset glow from top */
+        radial-gradient(ellipse 140% 45% at 50% -10%, rgba(196, 88, 48, 0.4) 0%, rgba(180, 70, 40, 0.15) 30%, transparent 55%),
+        /* Left top orange accent */
+        radial-gradient(ellipse 70% 35% at 25% 0%, rgba(210, 95, 45, 0.3) 0%, transparent 50%),
+        /* Right top warm glow */
+        radial-gradient(ellipse 60% 30% at 75% -5%, rgba(190, 80, 42, 0.25) 0%, transparent 45%),
+        /* Subtle purple ambient at bottom */
+        radial-gradient(ellipse 90% 40% at 50% 110%, rgba(70, 60, 110, 0.1) 0%, transparent 50%);
       pointer-events: none;
     }
 
