@@ -625,16 +625,32 @@
       box-shadow:
         0 4px 16px rgba(0,0,0,0.25),
         inset 0 1px 0 rgba(255,255,255,0.1);
-      transition: background 8s ease-in-out;
     }
 
     .exercise-header:hover .exercise-number {
-      background: linear-gradient(135deg,
-        #122E74 0%,
-        #014992 33%,
-        #007ED4 66%,
-        #00A3FA 100%
-      );
+      animation: duskToSky 16s ease-in-out infinite;
+    }
+
+    @keyframes duskToSky {
+      0%, 100% {
+        background: linear-gradient(135deg,
+          #0a0f1a 0%,
+          #12203a 25%,
+          #1a2d4d 45%,
+          #2f3d55 65%,
+          #4a4555 80%,
+          #c45830 95%,
+          #d4663c 100%
+        );
+      }
+      50% {
+        background: linear-gradient(135deg,
+          #122E74 0%,
+          #014992 33%,
+          #007ED4 66%,
+          #00A3FA 100%
+        );
+      }
     }
 
     .exercise-title-group {
