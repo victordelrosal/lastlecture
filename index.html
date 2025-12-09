@@ -447,12 +447,172 @@
       padding: 0 24px;
     }
 
+    /* Vision Mission Goals Section */
+    .vmg-section {
+      background: linear-gradient(to bottom, #ffffff 0%, #fafafa 15%, #f5f5f7 50%, #ededef 85%, #e5e5e8 100%);
+      border-radius: var(--radius-xl);
+      padding: 48px 56px;
+      margin: -80px auto 32px;
+      max-width: 760px;
+      position: relative;
+      z-index: 10;
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.8) inset,
+        0 -1px 3px rgba(0,0,0,0.04) inset,
+        var(--shadow-xl);
+      border: 1px solid var(--color-border-light);
+      animation: fadeInUp 0.8s ease-out 0.5s both;
+    }
+
+    .vmg-header {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .vmg-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg,
+        #0a0f1a 0%,
+        #12203a 25%,
+        #1a2d4d 45%,
+        #2f3d55 65%,
+        #4a4555 80%,
+        #c45830 95%,
+        #d4663c 100%
+      );
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      box-shadow: 0 8px 24px rgba(10, 15, 26, 0.35);
+    }
+
+    .vmg-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: white;
+    }
+
+    .vmg-title {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: 8px;
+    }
+
+    .vmg-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .vmg-item {
+      padding: 24px;
+      background: white;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border-light);
+      transition: all var(--transition);
+    }
+
+    .vmg-item:hover {
+      border-color: var(--color-border);
+      box-shadow: var(--shadow-md);
+    }
+
+    .vmg-item-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .vmg-item-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .vmg-item-icon.vision {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .vmg-item-icon.mission {
+      background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    }
+
+    .vmg-item-icon.goals {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+
+    .vmg-item-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: white;
+    }
+
+    .vmg-item-label {
+      font-weight: 600;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .vmg-item-label.vision { color: #667eea; }
+    .vmg-item-label.mission { color: #11998e; }
+    .vmg-item-label.goals { color: #f5576c; }
+
+    .vmg-item-text {
+      color: var(--color-text-secondary);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .vmg-goals-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .vmg-goals-list li {
+      padding: 8px 0 8px 24px;
+      position: relative;
+      color: var(--color-text-secondary);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .vmg-goals-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 16px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+
+    @media (max-width: 768px) {
+      .vmg-section {
+        padding: 32px 24px;
+        margin: -60px 16px 24px;
+        border-radius: var(--radius-lg);
+      }
+    }
+
     /* Instructions Card */
     .instructions-card {
       background: linear-gradient(to bottom, #ffffff 0%, #fafafa 15%, #f5f5f7 50%, #ededef 85%, #e5e5e8 100%);
       border-radius: var(--radius-xl);
       padding: 48px 56px;
-      margin: -80px auto 64px;
+      margin: 0 auto 64px;
       max-width: 760px;
       position: relative;
       z-index: 10;
@@ -1397,6 +1557,64 @@
       <span id="live-datetime"></span>
     </div>
   </header>
+
+  <!-- Vision, Mission & Goals -->
+  <div class="container">
+    <div class="vmg-section">
+      <div class="vmg-header">
+        <div class="vmg-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <circle cx="12" cy="12" r="6"></circle>
+            <circle cx="12" cy="12" r="2"></circle>
+          </svg>
+        </div>
+        <h2 class="vmg-title">Why This Matters</h2>
+      </div>
+      <div class="vmg-grid">
+        <div class="vmg-item">
+          <div class="vmg-item-header">
+            <div class="vmg-item-icon vision">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </div>
+            <span class="vmg-item-label vision">Vision</span>
+          </div>
+          <p class="vmg-item-text">Professionals who think clearly about AI, act ethically under pressure, and build things that matter.</p>
+        </div>
+        <div class="vmg-item">
+          <div class="vmg-item-header">
+            <div class="vmg-item-icon mission">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+            </div>
+            <span class="vmg-item-label mission">Mission</span>
+          </div>
+          <p class="vmg-item-text">To close this course with something you actually keep: a document, a stance, a habit, or a question that travels with you into your career.</p>
+        </div>
+        <div class="vmg-item">
+          <div class="vmg-item-header">
+            <div class="vmg-item-icon goals">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <span class="vmg-item-label goals">Goals</span>
+          </div>
+          <ul class="vmg-goals-list">
+            <li>Crystallize your professional identity and ethical commitments</li>
+            <li>Build a reusable framework for working with AI</li>
+            <li>Practice rigorous, dialectical thinking about technology</li>
+            <li>Leave with something tangible you can defend and revisit</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Instructions Card -->
   <div class="container">
